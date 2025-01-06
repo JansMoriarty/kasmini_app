@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/page/edit_toko.dart';
+import 'package:kasmini_app/page/example_prod.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -90,13 +92,25 @@ class HomePage extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 6, right: 4),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: Container(
-                                  width: 65,
-                                  height: 65,
-                                  color: const Color.fromARGB(255, 255, 255, 255),
-                                  child: Icon(
-                                    Icons.camera_alt_rounded,
-                                    color: Colors.grey,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            StoreSettingsPage(),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 65,
+                                    height: 65,
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    child: Icon(
+                                      Icons.camera_alt_rounded,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 )),
                           )
@@ -171,7 +185,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 25),
-        
+
               const Text(
                 "Menu Layanan",
                 style: TextStyle(
@@ -180,7 +194,7 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 20),
-        
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -188,29 +202,39 @@ class HomePage extends StatelessWidget {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Container(
-                        height: 135,
-                        color: const Color.fromARGB(33, 126, 245, 115),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 22),
-                              child: Icon(
-                                Icons.shopping_bag,
-                                color: Color.fromARGB(255, 126, 245, 115),
-                                size: 38,
-                              ),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Product(),
                             ),
-                            Text(
-                              'Produk',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color.fromARGB(255, 126, 245, 115)),
-                            )
-                          ],
+                          );
+                        },
+                        child: Container(
+                          height: 135,
+                          color: const Color.fromARGB(33, 126, 245, 115),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 22),
+                                child: Icon(
+                                  Icons.shopping_bag,
+                                  color: Color.fromARGB(255, 126, 245, 115),
+                                  size: 38,
+                                ),
+                              ),
+                              Text(
+                                'Produk',
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromARGB(255, 126, 245, 115)),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -281,7 +305,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-        
+
               const SizedBox(height: 35),
               // Card Pengeluaran
               Column(
@@ -341,7 +365,8 @@ class HomePage extends StatelessWidget {
                                     'Selalu Kelola Pengeluaranmu!',
                                     style: TextStyle(
                                         fontFamily: 'Poppins',
-                                        color: const Color.fromARGB(163, 0, 0, 0),
+                                        color:
+                                            const Color.fromARGB(163, 0, 0, 0),
                                         fontSize: 11),
                                   ),
                                 ],
@@ -418,7 +443,86 @@ class HomePage extends StatelessWidget {
                                     'Kelola akun kasir ',
                                     style: TextStyle(
                                         fontFamily: 'Poppins',
-                                        color: const Color.fromARGB(163, 0, 0, 0),
+                                        color:
+                                            const Color.fromARGB(163, 0, 0, 0),
+                                        fontSize: 11),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 18),
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: const Color.fromARGB(130, 0, 0, 0),
+                            size: 12.5,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      boxShadow: [
+                        const BoxShadow(
+                          color: Color.fromARGB(35, 0, 0, 0),
+                          offset: Offset(0, 0),
+                          blurRadius: 4,
+                          spreadRadius: 0.5,
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  color: Color.fromARGB(55, 8, 0, 255),
+                                  child: Icon(
+                                    Icons.bar_chart_rounded,
+                                    color: Color.fromARGB(255, 8, 0, 255),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20, left: 12),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 6),
+                                    child: Text(
+                                      'Settings Profit',
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Atur persenan keuntungan.',
+                                    style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        color:
+                                            const Color.fromARGB(163, 0, 0, 0),
                                         fontSize: 11),
                                   ),
                                 ],
