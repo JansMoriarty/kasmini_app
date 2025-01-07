@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/design/ex_prodwidget.dart';
+import 'package:kasmini_app/page/add_prod.dart';
+import 'package:kasmini_app/page/home.dart';
+import 'package:kasmini_app/page/kategori.dart';
 
 class Product extends StatelessWidget {
   const Product({super.key});
@@ -37,7 +40,10 @@ class Product extends StatelessWidget {
                       child: IconButton(
                         icon: const Icon(Icons.arrow_back),
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
                         },
                       ),
                     ),
@@ -69,21 +75,29 @@ class Product extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 12),
-                          Container(
-                            width: 110,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border:
-                                  Border.all(color: const Color(0xffd9d9d9)),
-                            ),
-                            child: Center(
-                              child: const Text(
-                                'Kategori',
-                                style: TextStyle(
-                                  color: Color(0xff979797),
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Kategori()));
+                            },
+                            child: Container(
+                              width: 110,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border:
+                                    Border.all(color: const Color(0xffd9d9d9)),
+                              ),
+                              child: Center(
+                                child: const Text(
+                                  'Kategori',
+                                  style: TextStyle(
+                                    color: Color(0xff979797),
+                                    fontFamily: 'Poppins',
+                                    fontSize: 13,
+                                  ),
                                 ),
                               ),
                             ),
@@ -142,17 +156,26 @@ class Product extends StatelessWidget {
                             },
                             color: Color(0xff5755fe),
                             itemBuilder: (context) => [
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: "A-Z",
                                 child: Row(
                                   children: [
-                                    Icon(
-                                      Icons.arrow_upward_rounded,
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                      size: 16,
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Container(
+                                        color: Colors.white,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Icon(
+                                            Icons.arrow_upward_rounded,
+                                            color: Color(0xff5755fe),
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                     SizedBox(
-                                      width: 6,
+                                      width: 10,
                                     ),
                                     Text(
                                       "A - Z",
@@ -164,16 +187,25 @@ class Product extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: "Z-A",
                                 child: Row(
                                   children: [
-                                    Icon(
-                                      Icons.arrow_downward_rounded,
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                      size: 16,
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Container(
+                                        color: Colors.white,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Icon(
+                                            Icons.arrow_downward_rounded,
+                                            color: Color(0xff5755fe),
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    SizedBox(width: 6),
+                                    SizedBox(width: 10),
                                     Text(
                                       "Z - A",
                                       style: TextStyle(
@@ -183,16 +215,25 @@ class Product extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: "Stok1",
                                 child: Row(
                                   children: [
-                                    Icon(
-                                      Icons.trending_up_rounded,
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                      size: 16,
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Container(
+                                        color: Colors.white,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Icon(
+                                            Icons.trending_up_rounded,
+                                            color: Color(0xff5755fe),
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    SizedBox(width: 6),
+                                    SizedBox(width: 10),
                                     Text(
                                       "Stok",
                                       style: TextStyle(
@@ -202,16 +243,25 @@ class Product extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: "Stok2",
                                 child: Row(
                                   children: [
-                                    Icon(
-                                      Icons.trending_down_rounded,
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                      size: 16,
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Container(
+                                        color: Colors.white,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Icon(
+                                            Icons.trending_down_rounded,
+                                            color: Color(0xff5755fe),
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    SizedBox(width: 6),
+                                    SizedBox(width: 10),
                                     Text(
                                       "Stok",
                                       style: TextStyle(
@@ -235,10 +285,10 @@ class Product extends StatelessWidget {
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, // Dua kolom horizontal
                           crossAxisSpacing: 12, // Spasi horizontal antar kartu
-                          mainAxisSpacing: 0, // Spasi vertikal antar kartu
-                          childAspectRatio: 2 / 4, // Rasio aspek untuk kartu
+                          mainAxisSpacing: 8, // Spasi vertikal antar kartu
+                          childAspectRatio: 2.2 / 4, // Rasio aspek untuk kartu
                         ),
-                        itemCount: 4, // Jumlah item yang ingin ditampilkan
+                        itemCount: 3, // Jumlah item yang ingin ditampilkan
                         itemBuilder: (context, index) {
                           return CardProd(); // Widget untuk setiap kartu
                         },
@@ -273,7 +323,12 @@ class Product extends StatelessWidget {
                     backgroundColor: const Color(0xff5755fe),
                     shadowColor: Colors.transparent,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddProd()),
+                    );
+                  },
                   child: Text(
                     'Tambah Produk',
                     style: TextStyle(

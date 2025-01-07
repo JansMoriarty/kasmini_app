@@ -1,16 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-class StoreSettingsPage extends StatefulWidget {
+class AddProd extends StatefulWidget {
   @override
-  _StoreSettingsPageState createState() => _StoreSettingsPageState();
+  _AddProdState createState() => _AddProdState();
 }
 
-class _StoreSettingsPageState extends State<StoreSettingsPage> {
+class _AddProdState extends State<AddProd> {
   String? _storeImagePath;
   final TextEditingController _addressController = TextEditingController();
   String? _selectedProfitOption;
+  bool isChecked = false; // Status awal checkbox
+  final TextEditingController _hargaBeliController = TextEditingController();
+  final TextEditingController _hargaJualController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _hargaBeliController.addListener(() {
+      final String hargaBeliText = _hargaBeliController.text;
+      if (hargaBeliText.isNotEmpty) {
+        final int hargaBeli =
+            int.tryParse(hargaBeliText.replaceAll(RegExp(r'[^0-9]'), '')) ?? 0;
+        final int hargaJual = (hargaBeli * 1.2).round(); // Tambah 20%
+        _hargaJualController.text = hargaJual.toString();
+      } else {
+        _hargaJualController.clear();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _hargaBeliController.dispose();
+    _hargaJualController.dispose();
+    super.dispose();
+  }
 
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
@@ -73,12 +101,11 @@ class _StoreSettingsPageState extends State<StoreSettingsPage> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          'Pengaturan Toko',
+                          'Tambah Produk',
                           style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'Poppins',
-                            color: const Color.fromARGB(185, 0, 0, 0)
-                          ),
+                              fontSize: 20,
+                              fontFamily: 'Poppins',
+                              color: const Color.fromARGB(185, 0, 0, 0)),
                         ),
                       ),
                     ),
@@ -103,7 +130,7 @@ class _StoreSettingsPageState extends State<StoreSettingsPage> {
                       radius: 50,
                       backgroundImage: _storeImagePath != null
                           ? FileImage(File(_storeImagePath!))
-                          : AssetImage('../assets/images/pfp.jpeg')
+                          : AssetImage('../assets/images/placeholder.jpeg')
                               as ImageProvider,
                     ),
                     Positioned(
@@ -136,31 +163,18 @@ class _StoreSettingsPageState extends State<StoreSettingsPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.store,
+                      Text(
+                        'Nama Produk',
+                        style: TextStyle(
+                            fontSize: 14,
                             color: const Color.fromARGB(126, 0, 0, 0),
-                          ),
-                          SizedBox(
-                            width: 6,
-                          ),
-                          Text(
-                            'Nama Toko',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: const Color.fromARGB(126, 0, 0, 0),
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ],
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600),
                       ),
                       SizedBox(height: 12),
-                      // NAMA TOKO
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: TextField(
-                          controller: _addressController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -169,169 +183,165 @@ class _StoreSettingsPageState extends State<StoreSettingsPage> {
                           maxLines: 1,
                         ),
                       ),
+
                       SizedBox(
-                        height: 28,
+                        height: 34,
                       ),
+                      Text(
+                        'Barcode / Qrcode',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: const Color.fromARGB(126, 0, 0, 0),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: 12),
+                      // NAMA TOKO
                       Row(
                         children: [
-                          Icon(
-                            Icons.location_on_rounded,
-                            color: const Color.fromARGB(126, 0, 0, 0),
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: InputBorder.none,
+                                ),
+                                maxLines: 1,
+                              ),
+                            ),
                           ),
-                          SizedBox(
-                            width: 6,
-                          ),
-                          Text(
-                            'Alamat Toko',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: const Color.fromARGB(126, 0, 0, 0),
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600),
+                          const SizedBox(
+                              width: 8), // Jarak antara TextField dan ikon
+                          InkWell(
+                            onTap: () {
+                              // Aksi untuk scan QR Code
+                              print('Scan QR Code di sini');
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xff5755fe),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              padding: const EdgeInsets.all(12),
+                              child: Icon(
+                                Icons.qr_code_scanner_rounded,
+                                size: 24,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ],
                       ),
+
+                      SizedBox(
+                        height: 34,
+                      ),
+
+                      Text(
+                        'Stok Produk',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: const Color.fromARGB(126, 0, 0, 0),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600),
+                      ),
                       SizedBox(height: 12),
-                      // ALAMAT TOKO
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: TextField(
-                          controller: _addressController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             border: InputBorder.none,
                           ),
-                          maxLines: 3,
+                          maxLines: 1,
                         ),
                       ),
+
+                      SizedBox(
+                        height: 34,
+                      ),
+                      Text(
+                        'Satuan Produk',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: const Color.fromARGB(126, 0, 0, 0),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: 12),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: InputBorder.none,
+                          ),
+                          maxLines: 1,
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 34,
+                      ),
+
+                      Text(
+                        'Harga Beli',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: const Color.fromARGB(126, 0, 0, 0),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: 12),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: TextField(
+                          controller: _hargaBeliController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          decoration: InputDecoration(
+                              prefixText: 'Rp. ',
+                              prefixStyle: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: Color(0xffd9d9d9)),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: InputBorder.none),
+                        ),
+                      ),
+                      SizedBox(height: 28),
+                      Text(
+                        'Harga Jual',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: const Color.fromARGB(126, 0, 0, 0),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: 12),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: TextField(
+                          controller: _hargaJualController,
+                          enabled: false,
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(12),
+                              prefixText: 'Rp. ',
+                              filled: true,
+                              fillColor:
+                                  const Color.fromARGB(255, 255, 255, 255),
+                              border: InputBorder.none),
+                        ),
+                      ),
+                      SizedBox(height: 38),
                       SizedBox(
                         height: 38,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.attach_money_rounded,
-                            color: const Color.fromARGB(126, 0, 0, 0),
-                          ),
-                          SizedBox(
-                            width: 6,
-                          ),
-                          Text(
-                            'Profit Settings',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: const Color.fromARGB(126, 0, 0, 0),
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      // Profit Dropdown
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 4.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.white,
-                        ),
-                        child: DropdownButton<String>(
-                          value: _selectedProfitOption,
-                          hint: Text(
-                            'Pilih Profit',
-                            style: TextStyle(fontFamily: 'Poppins', fontSize: 13),
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _selectedProfitOption = newValue;
-                            });
-                          },
-                          isExpanded: true,
-                          items: [
-                            DropdownMenuItem<String>(
-                              value: 'A',
-                              child: Text(
-                                'Profit = Omzet - Modal',
-                                style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: const Color.fromARGB(122, 0, 0, 0),
-                                    fontSize: 13),
-                              ),
-                            ),
-                            DropdownMenuItem<String>(
-                              value: 'B',
-                              child: Text(
-                                  'Profit = Omzet - Modal - Pengeluaran',
-                                  style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      color: const Color.fromARGB(122, 0, 0, 0),
-                                      fontSize: 13)),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 80,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.print_rounded,
-                            color: const Color.fromARGB(126, 0, 0, 0),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Pengaturan Printer',
-                            style: TextStyle(
-                                fontFamily: 'Poppins',
-                                color: const Color.fromARGB(126, 0, 0, 0),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      SizedBox(
-                        width: double.maxFinite,
-                        child: Divider(
-                          color: const Color.fromARGB(49, 0, 0, 0),
-                          thickness: 1,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 60,
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Pilih Printer',
-                                style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    color: const Color.fromARGB(126, 0, 0, 0)),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: const Color.fromARGB(126, 0, 0, 0),
-                                size: 12,
-                              )
-                            ],
-                          ),
-                        ),
                       ),
                     ],
                   ),
