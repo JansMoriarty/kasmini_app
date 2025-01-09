@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/page/edit_toko.dart';
 import 'package:kasmini_app/page/example_prod.dart';
+import 'package:kasmini_app/page/manage_stok.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Mendapatkan ukuran layar untuk menyesuaikan elemen
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
@@ -199,13 +197,14 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Produk
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Produk
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -216,17 +215,18 @@ class HomePage extends StatelessWidget {
                             );
                           },
                           child: Container(
-                            height: 135,
-                            color: const Color.fromARGB(33, 126, 245, 115),
+                            height: 125,
+                            width: 160,
+                            color: Color.fromARGB(40, 115, 245, 143),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
                                 Padding(
-                                  padding: EdgeInsets.only(bottom: 22),
+                                  padding: EdgeInsets.only(bottom: 14),
                                   child: Icon(
                                     Icons.shopping_bag,
-                                    color: Color.fromARGB(255, 126, 245, 115),
-                                    size: 38,
+                                    color: Color(0xff73F590),
+                                    size: 42,
                                   ),
                                 ),
                                 Text(
@@ -235,55 +235,60 @@ class HomePage extends StatelessWidget {
                                       fontFamily: 'Poppins',
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color:
-                                          Color.fromARGB(255, 126, 245, 115)),
+                                      color: Color(0xff73F590)),
                                 )
                               ],
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    // Kelola Stok
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Container(
-                          height: 135,
-                          color: const Color.fromARGB(29, 235, 223, 55),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(bottom: 22),
-                                child: Icon(
-                                  Icons.dashboard_customize_rounded,
-                                  color: Color(0xFFEBDE37),
-                                  size: 38,
+                      const SizedBox(width: 12),
+                      // Kelola Stok
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ManageStok()));
+                          },
+                          child: Container(
+                            height: 125,
+                            width: 160,
+                            color: const Color.fromARGB(41, 235, 223, 55),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(bottom: 16),
+                                  child: Icon(
+                                    Icons.dashboard_customize_rounded,
+                                    color: Color.fromARGB(255, 235, 223, 55),
+                                    size: 42,
+                                  ),
                                 ),
-                              ),
-                              const Text(
-                                'Kelola Stok',
-                                style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFFEBDE37)),
-                              )
-                            ],
+                                const Text(
+                                  'Kelola Stok',
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color.fromARGB(255, 235, 223, 55)),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    // Cetak Resi
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
+                      const SizedBox(width: 12),
+                      // Cetak Resi
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
                         child: Container(
-                          height: 135,
-                          color: const Color.fromARGB(28, 40, 213, 247),
+                          height: 125,
+                          width: 160,
+                          color: const Color.fromARGB(40, 40, 213, 247),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -291,8 +296,8 @@ class HomePage extends StatelessWidget {
                                 padding: EdgeInsets.only(bottom: 22),
                                 child: Icon(
                                   Icons.print_rounded,
-                                  color: Color(0xFF28D4F7),
-                                  size: 38,
+                                  color: Color.fromARGB(255, 40, 213, 247),
+                                  size: 42,
                                 ),
                               ),
                               const Text(
@@ -301,14 +306,46 @@ class HomePage extends StatelessWidget {
                                     fontFamily: 'Poppins',
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xFF28D4F7)),
+                                    color: Color.fromARGB(255, 40, 213, 247)),
                               )
                             ],
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 12,
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: Container(
+                          height: 125,
+                          width: 160,
+                          color: Color.fromARGB(40, 255, 149, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 22),
+                                child: Icon(
+                                  Icons.history_rounded,
+                                  color: Color.fromARGB(255, 255, 149, 0),
+                                  size: 42,
+                                ),
+                              ),
+                              const Text(
+                                'Riwayat',
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromARGB(255, 255, 149, 0)),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
 
                 const SizedBox(height: 35),
@@ -392,7 +429,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 14,
                     ),
                     Container(
                       width: double.infinity,
