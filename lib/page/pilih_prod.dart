@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/design/card_prod_stok.dart';
 import 'package:kasmini_app/design/ex_prodwidget.dart';
 import 'package:kasmini_app/page/add_prod.dart';
 import 'package:kasmini_app/page/home.dart';
@@ -40,10 +41,7 @@ class PilihProd extends StatelessWidget {
                       child: IconButton(
                         icon: const Icon(Icons.arrow_back),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                          Navigator.pop(context);
                         },
                       ),
                     ),
@@ -234,17 +232,17 @@ class PilihProd extends StatelessWidget {
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, // Dua kolom horizontal
                           crossAxisSpacing: 12, // Spasi horizontal antar kartu
-                          mainAxisSpacing: 8, // Spasi vertikal antar kartu
+                          mainAxisSpacing: 30, // Spasi vertikal antar kartu
                           childAspectRatio: 2.2 / 4, // Rasio aspek untuk kartu
                         ),
                         itemCount: 3, // Jumlah item yang ingin ditampilkan
                         itemBuilder: (context, index) {
-                          return CardProd(); // Widget untuk setiap kartu
+                          return CardProdStok(); // Widget untuk setiap kartu
                         },
                       ),
                     ],
                   ),
-                ),
+                ), 
               ],
             ),
           ),

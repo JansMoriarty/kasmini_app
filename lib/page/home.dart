@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/page/edit_toko.dart';
 import 'package:kasmini_app/page/example_prod.dart';
+import 'package:kasmini_app/page/history/history.dart';
 import 'package:kasmini_app/page/manage_stok.dart';
+import 'package:kasmini_app/page/print_resi.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -285,30 +287,38 @@ class HomePage extends StatelessWidget {
                       // Cetak Resi
                       ClipRRect(
                         borderRadius: BorderRadius.circular(24),
-                        child: Container(
-                          height: 125,
-                          width: 160,
-                          color: const Color.fromARGB(40, 40, 213, 247),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(bottom: 22),
-                                child: Icon(
-                                  Icons.print_rounded,
-                                  color: Color.fromARGB(255, 40, 213, 247),
-                                  size: 42,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PrintResiPage()));
+                          },
+                          child: Container(
+                            height: 125,
+                            width: 160,
+                            color: const Color.fromARGB(40, 40, 213, 247),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(bottom: 22),
+                                  child: Icon(
+                                    Icons.print_rounded,
+                                    color: Color.fromARGB(255, 40, 213, 247),
+                                    size: 42,
+                                  ),
                                 ),
-                              ),
-                              const Text(
-                                'Cetak Resi',
-                                style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromARGB(255, 40, 213, 247)),
-                              )
-                            ],
+                                const Text(
+                                  'Cetak Resi',
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color.fromARGB(255, 40, 213, 247)),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -317,30 +327,38 @@ class HomePage extends StatelessWidget {
                       ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(24),
-                        child: Container(
-                          height: 125,
-                          width: 160,
-                          color: Color.fromARGB(40, 255, 149, 0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(bottom: 22),
-                                child: Icon(
-                                  Icons.history_rounded,
-                                  color: Color.fromARGB(255, 255, 149, 0),
-                                  size: 42,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => History()));
+                          },
+                          child: Container(
+                            height: 125,
+                            width: 160,
+                            color: Color.fromARGB(40, 255, 149, 0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(bottom: 22),
+                                  child: Icon(
+                                    Icons.history_rounded,
+                                    color: Color.fromARGB(255, 255, 149, 0),
+                                    size: 42,
+                                  ),
                                 ),
-                              ),
-                              const Text(
-                                'Riwayat',
-                                style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromARGB(255, 255, 149, 0)),
-                              )
-                            ],
+                                const Text(
+                                  'Riwayat',
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color.fromARGB(255, 255, 149, 0)),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

@@ -12,6 +12,7 @@ dependencies:
   fluttertoast: ^8.2.1
   lottie: ^3.3.0
   image_picker: ^0.8.8+8
+  gap: ^2.0.1
 
 dev_dependencies:
   flutter_test:

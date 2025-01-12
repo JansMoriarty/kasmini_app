@@ -38,7 +38,7 @@ class StokCard extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
-            color: const Color.fromARGB(183, 88, 85, 254),
+            color: const Color.fromARGB(255, 88, 85, 254),
             boxShadow: [
               BoxShadow(
                 color: const Color.fromARGB(67, 0, 0, 0),

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/design/card_history.dart';
 import 'package:kasmini_app/design/ex_prodwidget.dart';
 import 'package:kasmini_app/page/add_prod.dart';
+import 'package:kasmini_app/page/history/belum_lunas.dart';
+import 'package:kasmini_app/page/history/dibatalkan.dart';
+import 'package:kasmini_app/page/history/history.dart';
 import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/kategori.dart';
+import 'package:lottie/lottie.dart';
 
-class Product extends StatelessWidget {
-  const Product({super.key});
+class BelumBayar extends StatelessWidget {
+  const BelumBayar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,7 @@ class Product extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          'Produk',
+                          'Riwayat Transaksi',
                           style: TextStyle(
                             fontSize: 20,
                             fontFamily: 'Poppins',
@@ -54,55 +59,123 @@ class Product extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Container(
-                              width: 100,
-                              height: 40,
-                              color: const Color(0xff5755fe),
-                              child: Center(
-                                child: Text(
-                                  'Produk',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 13,
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => History()));
+                              },
+                              child: Container(
+                                width: 100,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                      color: const Color(0xffd9d9d9)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Selesai',
+                                    style: const TextStyle(
+                                      color: Color(0xff979797),
+                                      fontFamily: 'Poppins',
+                                      fontSize: 13,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 12),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Kategori()));
-                            },
-                            child: Container(
-                              width: 110,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border:
-                                    Border.all(color: const Color(0xffd9d9d9)),
-                              ),
-                              child: Center(
-                                child: const Text(
-                                  'Kategori',
-                                  style: TextStyle(
-                                    color: Color(0xff979797),
-                                    fontFamily: 'Poppins',
-                                    fontSize: 13,
+                            const SizedBox(width: 12),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => BelumLunas()));
+                              },
+                              child: Container(
+                                width: 110,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                      color: const Color(0xffd9d9d9)),
+                                ),
+                                child: Center(
+                                  child: const Text(
+                                    'Belum Lunas',
+                                    style: TextStyle(
+                                      color: Color(0xff979797),
+                                      fontFamily: 'Poppins',
+                                      fontSize: 13,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 12,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                
+                              },
+                              child: Container(
+                                width: 110,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xff5755fe),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Center(
+                                  child: const Text(
+                                    'Belum Bayar',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      fontFamily: 'Poppins',
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Batal()));
+                              },
+                              child: Container(
+                                width: 110,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                      color: Color.fromARGB(95, 201, 37, 37)),
+                                ),
+                                child: Center(
+                                  child: const Text(
+                                    'Dibatalkan',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(99, 201, 37, 37),
+                                      fontFamily: 'Poppins',
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -143,13 +216,6 @@ class Product extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 10),
-                          IconButton(
-                            onPressed: () {
-                              // Logika untuk Filter
-                              debugPrint("Filter pressed");
-                            },
-                            icon: const Icon(Icons.filter_list),
-                          ),
                           PopupMenuButton<String>(
                             onSelected: (value) {
                               debugPrint("Selected: $value");
@@ -277,67 +343,31 @@ class Product extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 20),
-                      // Mengganti Row dengan GridView.builder
-                      GridView.builder(
-                        shrinkWrap: true, // Penting untuk mencegah overflow
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, // Dua kolom horizontal
-                          crossAxisSpacing: 12, // Spasi horizontal antar kartu
-                          mainAxisSpacing: 20, // Spasi vertikal antar kartu
-                          childAspectRatio: 2.2 / 4, // Rasio aspek untuk kartu
+                      Container(
+                        height: 480,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            LottieBuilder.asset('../assets/lottie/login.json',
+                                width: 170, height: 170),
+                            SizedBox(height: 18),
+                            Text(
+                              'No data found.',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xffd9d9d9)),
+                            ),
+                          ],
                         ),
-                        itemCount: 3, // Jumlah item yang ingin ditampilkan
-                        itemBuilder: (context, index) {
-                          return CardProd(); // Widget untuk setiap kartu
-                        },
-                      ),
+                      )
                     ],
                   ),
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        height: 90,
-        child: Container(
-          height: 200,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6)),
-                    fixedSize: Size(double.maxFinite, 50),
-                    elevation: 0,
-                    backgroundColor: const Color(0xff5755fe),
-                    shadowColor: Colors.transparent,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AddProd()),
-                    );
-                  },
-                  child: Text(
-                    'Tambah Produk',
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        fontFamily: 'Poppins'),
-                  ),
-                ),
-              ),
-            ],
           ),
         ),
       ),

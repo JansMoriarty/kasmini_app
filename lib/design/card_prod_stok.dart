@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/page/add_stok.dart';
 
 class ExProdwidget extends StatelessWidget {
   const ExProdwidget({super.key});
@@ -8,36 +9,12 @@ class ExProdwidget extends StatelessWidget {
     // Mengambil ukuran layar
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(
-            16.0), // Memberikan padding untuk mencegah overflow
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: screenWidth < 600
-                    ? 2
-                    : 4, // Responsif berdasarkan ukuran layar
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio:
-                    20, // Rasio untuk menyesuaikan tinggi dan lebar kartu
-              ),
-              itemCount: 6, // Jumlah item
-              itemBuilder: (context, index) {
-                return CardProd();
-              },
-            );
-          },
-        ),
-      ),
-    );
+    return Scaffold();
   }
 }
 
-class CardProd extends StatelessWidget {
-  const CardProd({
+class CardProdStok extends StatelessWidget {
+  const CardProdStok({
     super.key,
   });
 
@@ -48,7 +25,8 @@ class CardProd extends StatelessWidget {
 
     // Menentukan ukuran responsif untuk kartu
     final cardWidth = screenWidth * 0.4; // 40% dari lebar layar
-    final imageHeight = cardWidth * 1.2; // Rasio tinggi gambar terhadap lebar kartu
+    final imageHeight =
+        cardWidth * 1.2; // Rasio tinggi gambar terhadap lebar kartu
 
     return Center(
       child: GestureDetector(
@@ -75,7 +53,10 @@ class CardProd extends StatelessWidget {
                   topRight: Radius.circular(24),
                 ),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddStok()));
+                  },
                   child: Container(
                     width: cardWidth,
                     height: imageHeight,
@@ -84,14 +65,14 @@ class CardProd extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: Image.asset(
                         '../assets/images/gitar.png',
-                        
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +84,6 @@ class CardProd extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 12,
-                        
                       ),
                     ),
                     SizedBox(height: 14),
