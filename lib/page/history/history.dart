@@ -4,6 +4,7 @@ import 'package:kasmini_app/design/ex_prodwidget.dart';
 import 'package:kasmini_app/page/add_prod.dart';
 import 'package:kasmini_app/page/history/belum_bayar.dart';
 import 'package:kasmini_app/page/history/belum_lunas.dart';
+import 'package:kasmini_app/page/history/detail_history.dart';
 import 'package:kasmini_app/page/history/dibatalkan.dart';
 import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/kategori.dart';
@@ -337,9 +338,14 @@ class History extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 20),
-                      CardHistory(),
-                      SizedBox(height: 12,),
-                      CardHistory(),
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HistoryDetail()));
+                          },
+                          child: CardHistory()),
                     ],
                   ),
                 ),

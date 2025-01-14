@@ -12,6 +12,7 @@ import 'package:kasmini_app/page/edit_toko.dart';
 import 'package:kasmini_app/page/example_prod.dart';
 import 'package:kasmini_app/page/history/belum_bayar.dart';
 import 'package:kasmini_app/page/history/belum_lunas.dart';
+import 'package:kasmini_app/page/history/detail_history.dart';
 import 'package:kasmini_app/page/history/dibatalkan.dart';
 import 'package:kasmini_app/page/history/history.dart';
 import 'package:kasmini_app/page/home.dart';
@@ -36,7 +37,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Batal(),
+      home: HistoryDetail(),
     );
   }
 }
