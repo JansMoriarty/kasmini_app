@@ -8,6 +8,7 @@ import 'package:kasmini_app/page/history/detail_history.dart';
 import 'package:kasmini_app/page/history/dibatalkan.dart';
 import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/kategori.dart';
+import 'package:kasmini_app/page/main_page.dart';
 
 class History extends StatelessWidget {
   const History({super.key});
@@ -48,7 +49,7 @@ class History extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) => MainPage()));
                         },
                       ),
                     ),

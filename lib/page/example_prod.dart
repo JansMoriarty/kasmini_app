@@ -3,6 +3,7 @@ import 'package:kasmini_app/design/ex_prodwidget.dart';
 import 'package:kasmini_app/page/add_prod.dart';
 import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/kategori.dart';
+import 'package:kasmini_app/page/main_page.dart';
 
 class Product extends StatelessWidget {
   const Product({super.key});
@@ -43,7 +44,7 @@ class Product extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) => MainPage()));
                         },
                       ),
                     ),
@@ -145,8 +146,7 @@ class Product extends StatelessWidget {
                           const SizedBox(width: 10),
                           IconButton(
                             onPressed: () {
-                              // Logika untuk Filter
-                              debugPrint("Filter pressed");
+                              
                             },
                             icon: const Icon(Icons.filter_list),
                           ),

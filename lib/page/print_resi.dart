@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class PrintResiPage extends StatefulWidget {
   const PrintResiPage({super.key});
@@ -19,15 +20,29 @@ class _PrintResiPageState extends State<PrintResiPage> {
           children: [
             // Gambar di posisi paling atas
             Positioned(
+              top: 30,
+              left: 0,
+              right: 0,
+              child: Container(
+                  color: Color(0xff5755fe),
+                  width: double.infinity,
+                  child: LottieBuilder.asset('../assets/lottie/resi.json')),
+            ),
+            Positioned(
               top: 0,
               left: 0,
               right: 0,
-              child: SizedBox(
-                width: double.infinity,
-                child: Image.asset(
-                  '../assets/images/pfp.jpeg',
-                  fit: BoxFit.cover,
-                  width: double.infinity,
+              child: Container(
+                height: 100, // Tinggi gradien (atur sesuai kebutuhan)
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black54, // Warna gradien atas
+                      Colors.transparent, // Warna gradien bawah
+                    ],
+                  ),
                 ),
               ),
             ),

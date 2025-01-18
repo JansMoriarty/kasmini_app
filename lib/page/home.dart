@@ -1,11 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:kasmini_app/design/nav.dart';
+import 'package:kasmini_app/page/account/akun_kasir.dart';
 import 'package:kasmini_app/page/edit_toko.dart';
 import 'package:kasmini_app/page/example_prod.dart';
 import 'package:kasmini_app/page/history/history.dart';
 import 'package:kasmini_app/page/manage_stok.dart';
+import 'package:kasmini_app/page/pengeluaran/pengeluaran.dart';
 import 'package:kasmini_app/page/print_resi.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<HomePage> {
+  int _selectedIndex = 0; // Default tab adalah Home
+
+  // Fungsi untuk menangani perubahan tab
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navigasi berdasarkan tab yang dipilih
+    switch (index) {
+      case 0:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+        break;
+      case 1:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const History()),
+        );
+        break;
+      case 2:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const History()),
+        );
+        break;
+      case 3:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const History()),
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -370,166 +418,187 @@ class HomePage extends StatelessWidget {
                 // Card Pengeluaran
                 Column(
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        boxShadow: [
-                          const BoxShadow(
-                            color: Color.fromARGB(35, 0, 0, 0),
-                            offset: Offset(0, 0),
-                            blurRadius: 4,
-                            spreadRadius: 0.5,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 16),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    color: Color.fromARGB(59, 255, 125, 120),
-                                    child: Icon(
-                                      Icons.credit_card_rounded,
-                                      color: Color.fromARGB(255, 255, 125, 120),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Pengeluaran()));
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          boxShadow: [
+                            const BoxShadow(
+                              color: Color.fromARGB(35, 0, 0, 0),
+                              offset: Offset(0, 0),
+                              blurRadius: 4,
+                              spreadRadius: 0.5,
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Color.fromARGB(59, 255, 125, 120),
+                                      child: Icon(
+                                        Icons.credit_card_rounded,
+                                        color:
+                                            Color.fromARGB(255, 255, 125, 120),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20, left: 12),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(bottom: 6),
-                                      child: Text(
-                                        'Pengeluaran',
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 20, left: 12),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 6),
+                                        child: Text(
+                                          'Pengeluaran',
+                                          style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12),
+                                        ),
+                                      ),
+                                      Text(
+                                        'Selalu Kelola Pengeluaranmu!',
                                         style: TextStyle(
                                             fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 12),
+                                            color: const Color.fromARGB(
+                                                163, 0, 0, 0),
+                                            fontSize: 11),
                                       ),
-                                    ),
-                                    Text(
-                                      'Selalu Kelola Pengeluaranmu!',
-                                      style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color: const Color.fromARGB(
-                                              163, 0, 0, 0),
-                                          fontSize: 11),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 18),
-                            child: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: const Color.fromARGB(130, 0, 0, 0),
-                              size: 12.5,
+                              ],
                             ),
-                          )
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(right: 18),
+                              child: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: const Color.fromARGB(130, 0, 0, 0),
+                                size: 12.5,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
                       height: 14,
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        boxShadow: [
-                          const BoxShadow(
-                            color: Color.fromARGB(35, 0, 0, 0),
-                            offset: Offset(0, 0),
-                            blurRadius: 4,
-                            spreadRadius: 0.5,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 16),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    color: Color.fromARGB(55, 201, 128, 243),
-                                    child: Icon(
-                                      Icons.person_2_rounded,
-                                      color: Color(0xFFC980F3),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AkunKasir()));
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          boxShadow: [
+                            const BoxShadow(
+                              color: Color.fromARGB(35, 0, 0, 0),
+                              offset: Offset(0, 0),
+                              blurRadius: 4,
+                              spreadRadius: 0.5,
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      color: Color.fromARGB(55, 201, 128, 243),
+                                      child: Icon(
+                                        Icons.person_2_rounded,
+                                        color: Color(0xFFC980F3),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20, left: 12),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(bottom: 6),
-                                      child: Text(
-                                        'Akun Kasir',
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 20, left: 12),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 6),
+                                        child: Text(
+                                          'Akun Kasir',
+                                          style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12),
+                                        ),
+                                      ),
+                                      Text(
+                                        'Kelola akun kasir ',
                                         style: TextStyle(
                                             fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 12),
+                                            color: const Color.fromARGB(
+                                                163, 0, 0, 0),
+                                            fontSize: 11),
                                       ),
-                                    ),
-                                    Text(
-                                      'Kelola akun kasir ',
-                                      style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color: const Color.fromARGB(
-                                              163, 0, 0, 0),
-                                          fontSize: 11),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 18),
-                            child: Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: const Color.fromARGB(130, 0, 0, 0),
-                              size: 12.5,
+                              ],
                             ),
-                          )
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(right: 18),
+                              child: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: const Color.fromARGB(130, 0, 0, 0),
+                                size: 12.5,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

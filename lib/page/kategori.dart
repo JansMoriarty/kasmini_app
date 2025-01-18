@@ -210,7 +210,7 @@ class _KategoriState extends State<Kategori> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Lottie.asset('../assets/lottie/login.json',
+                                  Lottie.asset('../assets/lottie/nofound.json',
                                       width: 170, height: 170),
                                   SizedBox(height: 18),
                                   Text(
