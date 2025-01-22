@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/login.dart';
+import 'package:kasmini_app/main_page.dart';
 import 'package:lottie/lottie.dart';
 
 class SuccessPage extends StatefulWidget {
@@ -135,7 +136,7 @@ class _StartPageState extends State<SuccessPage>
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => MainPage(),
                           ),
                         );
                       },

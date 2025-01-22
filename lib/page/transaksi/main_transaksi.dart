@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/design/card_prod_stok.dart';
+import 'package:kasmini_app/design/card_transaksi.dart';
 import 'package:kasmini_app/design/ex_prodwidget.dart';
 import 'package:kasmini_app/page/add_prod.dart';
 import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/kategori.dart';
-import 'package:kasmini_app/main_page.dart';
 
-class Product extends StatelessWidget {
-  const Product({super.key});
+class MainTransaksi extends StatelessWidget {
+  const MainTransaksi({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class Product extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          'Produk',
+                          'Transaksi',
                           style: TextStyle(
                             fontSize: 20,
                             fontFamily: 'Poppins',
@@ -36,18 +37,7 @@ class Product extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Positioned(
-                      left: 0,
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_back),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MainPage()));
-                        },
-                      ),
-                    ),
+                    
                   ],
                 ),
                 const SizedBox(height: 28),
@@ -55,57 +45,6 @@ class Product extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Container(
-                              width: 100,
-                              height: 40,
-                              color: const Color(0xff5755fe),
-                              child: Center(
-                                child: Text(
-                                  'Produk',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Kategori()));
-                            },
-                            child: Container(
-                              width: 110,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border:
-                                    Border.all(color: const Color(0xffd9d9d9)),
-                              ),
-                              child: Center(
-                                child: const Text(
-                                  'Kategori',
-                                  style: TextStyle(
-                                    color: Color(0xff979797),
-                                    fontFamily: 'Poppins',
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
                       Row(
                         children: [
                           Expanded(
@@ -146,7 +85,8 @@ class Product extends StatelessWidget {
                           const SizedBox(width: 10),
                           IconButton(
                             onPressed: () {
-                              
+                              // Logika untuk Filter
+                              debugPrint("Filter pressed");
                             },
                             icon: const Icon(Icons.filter_list),
                           ),
@@ -285,59 +225,19 @@ class Product extends StatelessWidget {
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, // Dua kolom horizontal
                           crossAxisSpacing: 12, // Spasi horizontal antar kartu
-                          mainAxisSpacing: 20, // Spasi vertikal antar kartu
+                          mainAxisSpacing: 30, // Spasi vertikal antar kartu
                           childAspectRatio: 2.2 / 4, // Rasio aspek untuk kartu
                         ),
-                        itemCount: 3, // Jumlah item yang ingin ditampilkan
+                        itemCount: 1, // Jumlah item yang ingin ditampilkan
                         itemBuilder: (context, index) {
-                          return CardProd(); // Widget untuk setiap kartu
+                          return CardTransaksi(); // Widget untuk setiap kartu
                         },
                       ),
                     ],
                   ),
-                ),
+                ), 
               ],
             ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        height: 90,
-        child: Container(
-          height: 200,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6)),
-                    fixedSize: Size(double.maxFinite, 50),
-                    elevation: 0,
-                    backgroundColor: const Color(0xff5755fe),
-                    shadowColor: Colors.transparent,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AddProd()),
-                    );
-                  },
-                  child: Text(
-                    'Tambah Produk',
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        fontFamily: 'Poppins'),
-                  ),
-                ),
-              ),
-            ],
           ),
         ),
       ),

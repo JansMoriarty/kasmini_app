@@ -13,6 +13,8 @@ dependencies:
   lottie: ^3.3.0
   image_picker: ^0.8.8+8
   gap: ^2.0.1
+  intl: ^0.18.0
+  flutter_calendar_carousel: ^2.1.4
 
   cupertino_icons: ^1.0.2
   google_nav_bar: ^5.0.6

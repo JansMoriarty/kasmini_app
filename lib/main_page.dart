@@ -7,6 +7,8 @@ import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/manage_stok.dart';
 import 'package:kasmini_app/page/pengeluaran/pengeluaran.dart';
 import 'package:kasmini_app/page/print_resi.dart';
+import 'package:kasmini_app/page/report/main_report.dart';
+import 'package:kasmini_app/page/transaksi/main_transaksi.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -23,8 +25,8 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const History(),
-    const ExampleProd(),
+    const MainReport(),
+    const MainTransaksi(),
     const ManageStok(),
   ];
 
@@ -55,7 +57,17 @@ class _MainPageState extends State<MainPage> {
         children: _pages,
       ),
       bottomNavigationBar: Container(
-        color: const Color.fromARGB(255, 255, 255, 255),
+        decoration: BoxDecoration(
+          color: Colors.white, // Warna background kartu
+          borderRadius: BorderRadius.circular(16), // Sudut membulat
+          boxShadow: [
+            BoxShadow(
+              color: const Color.fromARGB(23, 0, 0, 0),
+              blurRadius: 6,
+              offset: const Offset(0, -1.5),
+            ),
+          ],
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: GNav(

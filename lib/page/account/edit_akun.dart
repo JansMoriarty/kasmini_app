@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kasmini_app/page/main_page.dart';
+import 'package:kasmini_app/main_page.dart';
 
 class EditAkun extends StatefulWidget {
   const EditAkun({super.key});
@@ -11,7 +11,7 @@ class EditAkun extends StatefulWidget {
 
 class _EditAkunState extends State<EditAkun> {
   // Menyimpan gambar avatar yang dipilih
-  String avatarImagePath = '../assets/images/avatar1.jpg';
+  String avatarImagePath = '../assets/images/male_owner.jpg';
 
   // Fungsi untuk menampilkan Modal Bottom Sheet pemilihan gambar
   void _showImagePicker(BuildContext context) {
@@ -25,78 +25,121 @@ class _EditAkunState extends State<EditAkun> {
         ),
       ),
       builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // AppBar-like Container dengan tombol silang di kanan
-              Container(
-                color: const Color.fromARGB(255, 255, 255, 255),
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Pilih Gambar Avatar',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 165, 165, 165),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                      textAlign: TextAlign.center,
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // AppBar-like Container dengan tombol silang di kanan
+            Container(
+              color: Color(0xff5755fe),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Pilih Gambar',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontFamily: 'Poppins',
                     ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.close,
-                        color: Color.fromARGB(255, 163, 163, 163),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(
-                            context); // Menutup modal saat tombol silang ditekan
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.close, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context); // Menutup modal
+                    },
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              // Gambar-gambar avatar dalam Row
-              Row(
+            ),
+            const SizedBox(height: 38),
+            // Gambar-gambar avatar dalam Row
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
                     onTap: () {
                       setState(() {
                         avatarImagePath =
-                            '../assets/images/avatar1.jpg'; // Ganti dengan path avatar 1
+                            '../assets/images/avatar_male.jpg'; // Ganti dengan path avatar 1
                       });
                       Navigator.pop(context);
                     },
-                    child: Image.asset(
-                      '../assets/images/avatar1.jpg',
-                      width: 100,
-                      height: 100,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        '../assets/images/avatar_male.jpg',
+                        width: 70,
+                        height: 70,
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 12),
                   GestureDetector(
                     onTap: () {
                       setState(() {
                         avatarImagePath =
-                            '../assets/images/avatar2.jpg'; // Ganti dengan path avatar 2
+                            '../assets/images/avatar_female.jpg'; // Ganti dengan path avatar 2
                       });
                       Navigator.pop(context);
                     },
-                    child: Image.asset(
-                      '../assets/images/avatar2.jpg',
-                      width: 100,
-                      height: 100,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        '../assets/images/avatar_female.jpg',
+                        width: 70,
+                        height: 70,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        avatarImagePath =
+                            '../assets/images/male_owner.jpg'; // Ganti dengan path avatar 2
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        '../assets/images/male_owner.jpg',
+                        width: 70,
+                        height: 70,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        avatarImagePath =
+                            '../assets/images/female_owner.jpg'; // Ganti dengan path avatar 2
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        '../assets/images/female_owner.jpg',
+                        width: 70,
+                        height: 70,
+                      ),
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

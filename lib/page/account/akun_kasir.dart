@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/design/card_account.dart';
-import 'package:kasmini_app/page/main_page.dart';
+import 'package:kasmini_app/main_page.dart';
 
 class AkunKasir extends StatelessWidget {
   const AkunKasir({super.key});

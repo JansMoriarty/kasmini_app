@@ -4,6 +4,8 @@ import 'package:kasmini_app/control/addprod_ctrl.dart';
 import 'package:kasmini_app/design/card_account.dart';
 import 'package:kasmini_app/design/card_add_stok.dart';
 import 'package:kasmini_app/design/card_history.dart';
+import 'package:kasmini_app/design/card_laporan_transaksi.dart';
+
 import 'package:kasmini_app/design/card_product.dart';
 import 'package:kasmini_app/design/card_stok.dart';
 import 'package:kasmini_app/design/ex_prodwidget.dart';
@@ -21,16 +23,18 @@ import 'package:kasmini_app/page/history/history.dart';
 import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/kategori.dart';
 import 'package:kasmini_app/page/login.dart';
-import 'package:kasmini_app/page/main_page.dart';
+import 'package:kasmini_app/main_page.dart';
 import 'package:kasmini_app/page/manage_stok.dart';
 import 'package:kasmini_app/page/pengeluaran/data_pengeluaran.dart';
 import 'package:kasmini_app/page/pengeluaran/pengeluaran.dart';
 import 'package:kasmini_app/page/pilih_prod.dart';
 import 'package:kasmini_app/page/print_resi.dart';
+import 'package:kasmini_app/page/report/laporan_transaksi.dart';
+import 'package:kasmini_app/page/report/main_report.dart';
 import 'package:kasmini_app/page/start.dart';
 import 'package:kasmini_app/page/success.dart';
-
-
+import 'package:kasmini_app/page/transaksi/checkout.dart';
+import 'package:kasmini_app/page/transaksi/main_transaksi.dart';
 
 void main() {
   runApp(const MainApp());

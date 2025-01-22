@@ -8,7 +8,7 @@ import 'package:kasmini_app/page/history/detail_history.dart';
 import 'package:kasmini_app/page/history/dibatalkan.dart';
 import 'package:kasmini_app/page/home.dart';
 import 'package:kasmini_app/page/kategori.dart';
-import 'package:kasmini_app/page/main_page.dart';
+import 'package:kasmini_app/main_page.dart';
 import 'package:kasmini_app/page/pengeluaran/data_pengeluaran.dart';
 import 'package:kasmini_app/page/pilih_prod.dart';
 import 'package:kasmini_app/page/success.dart';
