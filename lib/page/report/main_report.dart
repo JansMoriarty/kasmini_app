@@ -102,7 +102,7 @@ class _MainReportState extends State<MainReport> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 38),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 38),
         child: Column(
           children: [
             Text(

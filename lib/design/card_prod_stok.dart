@@ -64,7 +64,7 @@ class CardProdStok extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Image.asset(
-                        '../assets/images/gitar.png',
+                        'assets/images/gitar.png',
                       ),
                     ),
                   ),

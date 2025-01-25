@@ -61,7 +61,7 @@ class _StartPageState extends State<StartPage>
           return Container(
             decoration: const BoxDecoration(color: Color(0xFF5755FE)),
             child: Padding(
-              padding: const EdgeInsets.all(34),
+              padding: const EdgeInsets.all(28),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -71,7 +71,7 @@ class _StartPageState extends State<StartPage>
                     child: Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: LottieBuilder.asset(
-                        '../assets/lottie/start.json',
+                        'assets/lottie/start.json',
                         width: 350,
                         height: 345,
                       ),

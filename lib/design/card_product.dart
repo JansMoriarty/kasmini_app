@@ -12,12 +12,11 @@ class CardProduct extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(24),
-                  topRight: Radius.circular(24)),
+                  topLeft: Radius.circular(24), topRight: Radius.circular(24)),
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),
-                  child: Image.asset('../assets/images/gitar.png'),
+                  child: Image.asset('assets/images/gitar.png'),
                 ),
                 width: 170,
                 height: 180,
@@ -41,8 +40,7 @@ class CardProduct extends StatelessWidget {
                         width: 100,
                         child: Text(
                           'Fender Stratocast Red ',
-                          style:
-                              TextStyle(fontFamily: 'Poppins', fontSize: 10),
+                          style: TextStyle(fontFamily: 'Poppins', fontSize: 10),
                         ),
                       ),
                       SizedBox(
@@ -60,8 +58,8 @@ class CardProduct extends StatelessWidget {
                           ),
                           Text(
                             '290(s).',
-                            style: TextStyle(
-                                fontFamily: 'Poppins', fontSize: 10),
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 10),
                           ),
                         ],
                       )

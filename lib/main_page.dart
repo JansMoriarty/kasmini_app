@@ -59,7 +59,7 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white, // Warna background kartu
-          borderRadius: BorderRadius.circular(16), // Sudut membulat
+          borderRadius: BorderRadius.circular(12), // Sudut membulat
           boxShadow: [
             BoxShadow(
               color: const Color.fromARGB(23, 0, 0, 0),
@@ -69,13 +69,13 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: GNav(
             backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             color: const Color(0xff5755fe),
             activeColor: const Color(0xff5755fe),
-            tabBackgroundColor: const Color.fromARGB(69, 217, 217, 217),
-            padding: const EdgeInsets.all(16),
+            tabBackgroundColor: const Color.fromARGB(39, 217, 217, 217),
+            padding: const EdgeInsets.all(10),
             gap: 12,
             selectedIndex: _selectedIndex,
             onTabChange: _onItemTapped,
@@ -103,9 +103,9 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               GButton(
-                icon: Icons.shopping_cart_outlined,
+                icon: Icons.shopping_bag,
                 iconSize: 30,
-                text: 'Transaksi',
+                text: 'Beli',
                 textStyle: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 14,

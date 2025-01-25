@@ -102,8 +102,7 @@ class _AddStokState extends State<AturJumlah> {
                               child: Container(
                                 child: Padding(
                                   padding: const EdgeInsets.all(4.0),
-                                  child:
-                                      Image.asset('../assets/images/gitar.png'),
+                                  child: Image.asset('assets/images/gitar.png'),
                                 ),
                                 width: 80,
                                 height: double.maxFinite,

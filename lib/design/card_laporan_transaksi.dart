@@ -50,13 +50,13 @@ class Transaksi extends StatelessWidget {
                       ),
                       child: const Icon(
                         Icons.credit_card,
-                        size: 38,
+                        size: 32,
                         color: Colors.green, // Ikon berwarna hijau
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(width: 16),
+                const SizedBox(width: 10),
                 // Detail informasi
                 Expanded(
                   child: Padding(
@@ -126,7 +126,7 @@ class Transaksi extends StatelessWidget {
                         SizedBox(
                           width: 200,
                           child: const Text(
-                            'Total Pembayaran   :  Rp. 190.000',
+                            'Total   :  Rp. 190.000,00',
                             style: TextStyle(
                               color: Colors.black54,
                               fontSize: 12,

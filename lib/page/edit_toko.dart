@@ -65,7 +65,7 @@ class _StoreSettingsPageState extends State<StoreSettingsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 32),
                 child: Stack(
                   children: [
                     Padding(
@@ -94,7 +94,7 @@ class _StoreSettingsPageState extends State<StoreSettingsPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 25),
               // EDIT FOTO TOKO
               Center(
                 child: Stack(
@@ -103,7 +103,7 @@ class _StoreSettingsPageState extends State<StoreSettingsPage> {
                       radius: 50,
                       backgroundImage: _storeImagePath != null
                           ? FileImage(File(_storeImagePath!))
-                          : AssetImage('../assets/images/pfp.jpeg')
+                          : AssetImage('assets/images/pfp.jpeg')
                               as ImageProvider,
                     ),
                     Positioned(
@@ -344,9 +344,9 @@ class _StoreSettingsPageState extends State<StoreSettingsPage> {
       // BUTTON SAVE
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        height: 120,
+        height: 85,
         child: Container(
-          height: 200,
+          height: 100,
           width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.white,

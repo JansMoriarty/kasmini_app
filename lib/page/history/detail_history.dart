@@ -213,7 +213,7 @@ class HistoryDetail extends StatelessWidget {
                                 color: const Color(0xffd9d9d9),
                               ),
                               padding: const EdgeInsets.all(8),
-                              child: Image.asset('../assets/images/gitar.png'),
+                              child: Image.asset('assets/images/gitar.png'),
                             ),
                             const SizedBox(
                               width: 12,
@@ -317,8 +317,14 @@ class HistoryDetail extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.cancel, color: Colors.white, size: 20,),
-                          SizedBox(width: 8,),
+                          Icon(
+                            Icons.cancel,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
                           const Text(
                             'Batalkan Pesanan',
                             style: TextStyle(
@@ -336,8 +342,11 @@ class HistoryDetail extends StatelessWidget {
                             borderRadius: BorderRadius.circular(6)),
                         fixedSize: const Size(double.maxFinite, 50),
                         elevation: 0,
-                        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                        side: BorderSide(color: const Color.fromARGB(255, 255, 69, 69), width: 1.5),
+                        backgroundColor:
+                            const Color.fromARGB(255, 255, 255, 255),
+                        side: BorderSide(
+                            color: const Color.fromARGB(255, 255, 69, 69),
+                            width: 1.5),
                         shadowColor: Colors.transparent,
                       ),
                       onPressed: () {
@@ -346,11 +355,18 @@ class HistoryDetail extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.delete, color: const Color.fromARGB(255, 255, 69, 69), size: 20,),
-                          SizedBox(width: 6,),
+                          Icon(
+                            Icons.delete,
+                            color: const Color.fromARGB(255, 255, 69, 69),
+                            size: 20,
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
                           const Text(
                             'Hapus Pesanan',
-                            style: TextStyle( fontFamily: 'Poppins',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
                               color: const Color.fromARGB(255, 255, 69, 69),
                             ),
                           ),

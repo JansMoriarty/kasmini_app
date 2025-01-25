@@ -60,7 +60,7 @@ class Checkout extends StatelessWidget {
                       color: const Color(0xffd9d9d9),
                     ),
                     padding: const EdgeInsets.all(8),
-                    child: Image.asset('../assets/images/gitar.png'),
+                    child: Image.asset('assets/images/gitar.png'),
                   ),
                   const SizedBox(
                     width: 12,

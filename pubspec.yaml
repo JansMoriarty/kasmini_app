@@ -29,6 +29,11 @@ flutter:
 
   assets:
     - assets/images/bgstart.svg
+    - assets/images/avatar.jpg
+    - assets/images/gitar.png
+    - assets/images/pfp.jpeg
+    - assets/lottie/start.json
+    - assets/lottie/login.json
 
   fonts:
     - family: Poppins

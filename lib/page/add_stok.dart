@@ -101,8 +101,7 @@ class _AddStokState extends State<AddStok> {
                               child: Container(
                                 child: Padding(
                                   padding: const EdgeInsets.all(4.0),
-                                  child:
-                                      Image.asset('../assets/images/gitar.png'),
+                                  child: Image.asset('assets/images/gitar.png'),
                                 ),
                                 width: 80,
                                 height: double.maxFinite,
@@ -233,7 +232,8 @@ class _AddStokState extends State<AddStok> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => SuccessPage()),
+                            MaterialPageRoute(
+                                builder: (context) => SuccessPage()),
                           );
                         },
                         child: Text(

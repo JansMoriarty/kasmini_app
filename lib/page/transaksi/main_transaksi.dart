@@ -18,13 +18,13 @@ class MainTransaksi extends StatelessWidget {
         height: double.infinity, // Mengisi seluruh tinggi layar
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
                 Stack(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 5),
+                      padding: const EdgeInsets.only(top: 28),
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -37,10 +37,9 @@ class MainTransaksi extends StatelessWidget {
                         ),
                       ),
                     ),
-                    
                   ],
                 ),
-                const SizedBox(height: 28),
+                const SizedBox(height: 12),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
@@ -216,7 +215,7 @@ class MainTransaksi extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
+
                       // Mengganti Row dengan GridView.builder
                       GridView.builder(
                         shrinkWrap: true, // Penting untuk mencegah overflow
@@ -224,18 +223,18 @@ class MainTransaksi extends StatelessWidget {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2, // Dua kolom horizontal
-                          crossAxisSpacing: 12, // Spasi horizontal antar kartu
-                          mainAxisSpacing: 30, // Spasi vertikal antar kartu
+                          crossAxisSpacing: 8, // Spasi horizontal antar kartu
+                          mainAxisSpacing: 18, // Spasi vertikal antar kartu
                           childAspectRatio: 2.2 / 4, // Rasio aspek untuk kartu
                         ),
-                        itemCount: 1, // Jumlah item yang ingin ditampilkan
+                        itemCount: 3, // Jumlah item yang ingin ditampilkan
                         itemBuilder: (context, index) {
                           return CardTransaksi(); // Widget untuk setiap kartu
                         },
                       ),
                     ],
                   ),
-                ), 
+                ),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/main_page.dart';
 import 'dart:async';
 import 'package:lottie/lottie.dart';
 import 'package:kasmini_app/page/home.dart';
@@ -95,7 +96,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
       Navigator.of(context).pop(); // Close loading screen
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => MainPage()),
       );
     } else {
       setState(() {
@@ -127,7 +128,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 130),
-                    Lottie.asset('../assets/lottie/login.json',
+                    Lottie.asset('assets/lottie/login.json',
                         height: 150, width: 150),
                     const SizedBox(height: 6),
                     const Text(

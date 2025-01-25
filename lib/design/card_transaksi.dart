@@ -50,9 +50,9 @@ class CardTransaksi extends StatelessWidget {
                     height: imageHeight,
                     color: const Color(0xfff0f0f0),
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        '../assets/images/gitar.png',
+                        'assets/images/gitar.png',
                       ),
                     ),
                   ),
@@ -71,10 +71,10 @@ class CardTransaksi extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 12,
+                        fontSize: 10,
                       ),
                     ),
-                    SizedBox(height: 14),
+                    SizedBox(height: 18),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -83,14 +83,16 @@ class CardTransaksi extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.bold,
-                            fontSize: 12,
+                            fontSize: 10,
                           ),
                         ),
                         Text(
                           '290(s).',
                           style: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 10,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 134, 134, 134)
                           ),
                         ),
                       ],

@@ -48,7 +48,8 @@ class CardProd extends StatelessWidget {
 
     // Menentukan ukuran responsif untuk kartu
     final cardWidth = screenWidth * 0.4; // 40% dari lebar layar
-    final imageHeight = cardWidth * 1.2; // Rasio tinggi gambar terhadap lebar kartu
+    final imageHeight =
+        cardWidth * 1.2; // Rasio tinggi gambar terhadap lebar kartu
 
     return Center(
       child: GestureDetector(
@@ -83,15 +84,15 @@ class CardProd extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Image.asset(
-                        '../assets/images/gitar.png',
-                        
+                        'assets/images/gitar.png',
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +104,6 @@ class CardProd extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 12,
-                        
                       ),
                     ),
                     SizedBox(height: 14),

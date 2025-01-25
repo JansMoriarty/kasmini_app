@@ -61,7 +61,7 @@ class _MyHomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-              horizontal: 28,
+              horizontal: 12,
               vertical: 40), // Mengurangi padding agar lebih responsif
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<HomePage> {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "Pauzan Rizky Alamsyah",
+                          "Pauzan Rizky A.",
                           style: TextStyle(
                               fontSize: 20,
                               color: Color(0xFF5755FE),
@@ -97,14 +97,14 @@ class _MyHomePageState extends State<HomePage> {
                     const CircleAvatar(
                       radius: 25,
                       backgroundImage:
-                          AssetImage('../assets/images/avatar.jpg'),
+                          AssetImage('assets/images/avatar.jpg'),
                     ),
                   ],
                 ),
                 const SizedBox(height: 25),
                 // Info Card
                 Container(
-                  height: 210,
+                  height: 182,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
                     color: Color(0xFF5755FE),
@@ -124,16 +124,16 @@ class _MyHomePageState extends State<HomePage> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 6),
                                   child: Text(
-                                    "Nama Toko",
+                                    "Indomaret",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w600,
                                         fontFamily: 'Poppins'),
                                   ),
                                 ),
                                 Text(
-                                  "Lokasi Toko",
+                                  "Jl. Pangeran Hidayatullah",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Poppins'),
@@ -155,8 +155,8 @@ class _MyHomePageState extends State<HomePage> {
                                       );
                                     },
                                     child: Container(
-                                      width: 65,
-                                      height: 65,
+                                      width: 58,
+                                      height: 58,
                                       color: const Color.fromARGB(
                                           255, 255, 255, 255),
                                       child: Icon(
@@ -184,15 +184,15 @@ class _MyHomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Container(
-                                  height: 22,
-                                  width: 22,
+                                  height: 18,
+                                  width: 18,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(100)),
                                   child: Icon(
                                     Icons.shopping_cart_rounded,
                                     color: Color(0xFF5755FE),
-                                    size: 16.5,
+                                    size: 13,
                                   )),
                             ),
                             Text(
@@ -200,7 +200,7 @@ class _MyHomePageState extends State<HomePage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Poppins',
-                                  fontSize: 15),
+                                  fontSize: 12.5),
                             ),
                           ],
                         ),
@@ -212,15 +212,15 @@ class _MyHomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Container(
-                                  height: 22,
-                                  width: 22,
+                                  height: 18,
+                                  width: 18,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(100)),
                                   child: Icon(
                                     Icons.show_chart_rounded,
                                     color: Color(0xFF5755FE),
-                                    size: 16.5,
+                                    size: 13,
                                   )),
                             ),
                             Text(
@@ -228,7 +228,7 @@ class _MyHomePageState extends State<HomePage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Poppins',
-                                  fontSize: 15),
+                                  fontSize: 12.5),
                             ),
                           ],
                         ),
@@ -236,16 +236,16 @@ class _MyHomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 35),
+                const SizedBox(height: 25),
 
                 const Text(
                   "Menu Layanan",
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600),
+                      fontWeight: FontWeight.w600,),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
 
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -265,8 +265,8 @@ class _MyHomePageState extends State<HomePage> {
                             );
                           },
                           child: Container(
-                            height: 125,
-                            width: 160,
+                            height: 120,
+                            width: 170,
                             color: Color.fromARGB(40, 115, 245, 143),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -292,7 +292,7 @@ class _MyHomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 8),
                       // Kelola Stok
                       ClipRRect(
                         borderRadius: BorderRadius.circular(24),
@@ -304,8 +304,8 @@ class _MyHomePageState extends State<HomePage> {
                                     builder: (context) => ManageStok()));
                           },
                           child: Container(
-                            height: 125,
-                            width: 160,
+                            height: 120,
+                            width: 170,
                             color: const Color.fromARGB(41, 235, 223, 55),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -331,7 +331,7 @@ class _MyHomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 8),
                       // Cetak Resi
                       ClipRRect(
                         borderRadius: BorderRadius.circular(24),
@@ -343,8 +343,8 @@ class _MyHomePageState extends State<HomePage> {
                                     builder: (context) => PrintResiPage()));
                           },
                           child: Container(
-                            height: 125,
-                            width: 160,
+                            height: 120,
+                            width: 170,
                             color: const Color.fromARGB(40, 40, 213, 247),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -371,7 +371,7 @@ class _MyHomePageState extends State<HomePage> {
                         ),
                       ),
                       SizedBox(
-                        width: 12,
+                        width: 8,
                       ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(24),
@@ -383,8 +383,8 @@ class _MyHomePageState extends State<HomePage> {
                                     builder: (context) => History()));
                           },
                           child: Container(
-                            height: 125,
-                            width: 160,
+                            height: 120,
+                            width: 170,
                             color: Color.fromARGB(40, 255, 149, 0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -427,7 +427,7 @@ class _MyHomePageState extends State<HomePage> {
                       },
                       child: Container(
                         width: double.infinity,
-                        height: 80,
+                        height: 70,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
                           color: const Color.fromARGB(255, 255, 255, 255),
@@ -448,24 +448,24 @@ class _MyHomePageState extends State<HomePage> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
+                                    borderRadius: BorderRadius.circular(6),
                                     child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      color: Color.fromARGB(59, 255, 125, 120),
+                                      height: 45,
+                                      width: 45,
+                                      color: Color.fromARGB(59, 255, 120, 120),
                                       child: Icon(
                                         Icons.credit_card_rounded,
                                         color:
-                                            Color.fromARGB(255, 255, 125, 120),
+                                            Color.fromARGB(255, 255, 120, 120),
                                       ),
                                     ),
                                   ),
                                 ),
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 20, left: 12),
+                                      const EdgeInsets.only( left: 12),
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -477,7 +477,7 @@ class _MyHomePageState extends State<HomePage> {
                                           style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 12),
+                                              fontSize: 11),
                                         ),
                                       ),
                                       Text(
@@ -486,7 +486,7 @@ class _MyHomePageState extends State<HomePage> {
                                             fontFamily: 'Poppins',
                                             color: const Color.fromARGB(
                                                 163, 0, 0, 0),
-                                            fontSize: 11),
+                                            fontSize: 10),
                                       ),
                                     ],
                                   ),
@@ -497,8 +497,8 @@ class _MyHomePageState extends State<HomePage> {
                               padding: const EdgeInsets.only(right: 18),
                               child: Icon(
                                 Icons.arrow_forward_ios_rounded,
-                                color: const Color.fromARGB(130, 0, 0, 0),
-                                size: 12.5,
+                                color: const Color.fromARGB(130, 61, 61, 61),
+                                size: 11,
                               ),
                             )
                           ],
@@ -517,7 +517,7 @@ class _MyHomePageState extends State<HomePage> {
                       },
                       child: Container(
                         width: double.infinity,
-                        height: 80,
+                        height: 70,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
                           color: const Color.fromARGB(255, 255, 255, 255),
@@ -538,10 +538,10 @@ class _MyHomePageState extends State<HomePage> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
+                                    borderRadius: BorderRadius.circular(6),
                                     child: Container(
-                                      height: 50,
-                                      width: 50,
+                                      height: 45,
+                                      width: 45,
                                       color: Color.fromARGB(55, 201, 128, 243),
                                       child: Icon(
                                         Icons.person_2_rounded,
@@ -552,9 +552,9 @@ class _MyHomePageState extends State<HomePage> {
                                 ),
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 20, left: 12),
+                                      const EdgeInsets.only(left: 12),
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -566,7 +566,7 @@ class _MyHomePageState extends State<HomePage> {
                                           style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 12),
+                                              fontSize: 11),
                                         ),
                                       ),
                                       Text(
@@ -575,7 +575,7 @@ class _MyHomePageState extends State<HomePage> {
                                             fontFamily: 'Poppins',
                                             color: const Color.fromARGB(
                                                 163, 0, 0, 0),
-                                            fontSize: 11),
+                                            fontSize: 10),
                                       ),
                                     ],
                                   ),
@@ -586,8 +586,8 @@ class _MyHomePageState extends State<HomePage> {
                               padding: const EdgeInsets.only(right: 18),
                               child: Icon(
                                 Icons.arrow_forward_ios_rounded,
-                                color: const Color.fromARGB(130, 0, 0, 0),
-                                size: 12.5,
+                                color: const Color.fromARGB(130, 40, 40, 40),
+                                size: 11,
                               ),
                             )
                           ],
