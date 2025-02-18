@@ -1,5 +1,5 @@
 plugins {
-    id "com.android.application" version "8.1.0" // Sesuaikan dengan versi yang terdeteksi
+    id "com.android.application" version "8.2.1" // Sesuaikan dengan versi yang terdeteksi
     id "org.jetbrains.kotlin.android" version "1.8.22"
     id "dev.flutter.flutter-gradle-plugin"
 }
