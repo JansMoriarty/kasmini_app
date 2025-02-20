@@ -11,11 +11,11 @@ class KasirModel extends Kasir {
 
   factory KasirModel.fromMap(Map<String, dynamic> map) {
     return KasirModel(
-      id: map['id'],
-      nama: map['nama'],
-      noHp: map['noHp'],
-      pin: map['pin'],
-      role: map['role'],
+      id: map['id'] as int,
+      nama: map['nama'] ?? '',
+      noHp: map['noHp'] as String?,
+      pin: map['pin'] ?? '',
+      role: map['role'] ?? '',
     );
   }
 

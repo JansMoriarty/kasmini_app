@@ -1,7 +1,7 @@
 class Kasir {
-  final int id;
+  final int? id;
   final String nama;
-  final String noHp;
+  final String? noHp;
   final String pin;
   final String role;
 

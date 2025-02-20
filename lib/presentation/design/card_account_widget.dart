@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/domain/entities/kasir.dart';
 import 'package:kasmini_app/presentation/views/account/edit_akun.dart';
 
-class CardAccount extends StatelessWidget {
-  const CardAccount({super.key});
+class CardAccountWidget extends StatelessWidget {
+  final Kasir kasir;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: AccountWidget(),
-        ),
-      ),
-    );
-  }
-}
-
-class AccountWidget extends StatelessWidget {
-  const AccountWidget({
+  const CardAccountWidget({
     super.key,
+    required this.kasir,
   });
 
   @override
@@ -54,9 +42,9 @@ class AccountWidget extends StatelessWidget {
             const SizedBox(width: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  'Pauzan',
+                  kasir.nama,
                   style: TextStyle(
                       color: Color.fromARGB(255, 57, 57, 57),
                       fontSize: 16,
@@ -67,7 +55,7 @@ class AccountWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '+62 878 1439 2518',
+                      kasir.noHp ?? '-',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey,
@@ -87,7 +75,7 @@ class AccountWidget extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      'Owner',
+                      kasir.role,
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey,

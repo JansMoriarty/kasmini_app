@@ -3,12 +3,11 @@ import 'package:kasmini_app/common/services/kasir_preferences_service.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
 import 'package:kasmini_app/domain/repositories/kasir_repo.dart';
 
-class KasirCubit extends Cubit<Kasir?> {
+class CurrentKasirCubit extends Cubit<Kasir?> {
   final KasirPreferencesService _kasirPreferencesService;
   final KasirRepo _kasirRepo;
-  late Kasir? kasir;
 
-  KasirCubit(this._kasirPreferencesService, this._kasirRepo) : super(null) {
+  CurrentKasirCubit(this._kasirPreferencesService, this._kasirRepo) : super(null) {
     _init();
   }
 
@@ -17,10 +16,10 @@ class KasirCubit extends Cubit<Kasir?> {
     final filter =
         selectedKasirId != null ? {'id': selectedKasirId} : {'role': 'owner'};
 
-    kasir = await _kasirRepo.getKasir(filter);
+    Kasir? kasir = await _kasirRepo.getKasir(filter);
 
     if (kasir != null) {
-      _kasirPreferencesService.selectedKasirId = kasir!.id;
+      _kasirPreferencesService.selectedKasirId = kasir.id;
     }
 
     emit(kasir);

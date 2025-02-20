@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:kasmini_app/presentation/design/card_account.dart';
-import 'package:kasmini_app/presentation/views/main_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kasmini_app/domain/entities/kasir.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/kasir_bloc.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/kasir_event.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/kasir_state.dart';
+import 'package:kasmini_app/presentation/design/card_account_widget.dart';
+import 'package:kasmini_app/presentation/pages/main_page.dart';
 
-class AkunKasir extends StatelessWidget {
-  const AkunKasir({super.key});
+class KasirView extends StatefulWidget {
+  const KasirView({super.key});
+
+  @override
+  State<KasirView> createState() => _KasirViewState();
+}
+
+class _KasirViewState extends State<KasirView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<KasirBloc>().add(LoadKasir());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +30,6 @@ class AkunKasir extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
-              // Berikan ukuran eksplisit pada Stack
               SizedBox(
                 height: 80, // Ukuran yang sesuai untuk area Stack
                 child: Stack(
@@ -34,7 +49,7 @@ class AkunKasir extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const MainView()));
+                                      builder: (context) => const MainPage()));
                             },
                           ),
                           const SizedBox(width: 12),
@@ -53,14 +68,15 @@ class AkunKasir extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0, vertical: 10.0),
                 child: Row(
                   children: [
                     Expanded(
                       child: TextField(
                         decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 22, vertical: 8),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0),
                             borderSide: const BorderSide(
@@ -161,11 +177,43 @@ class AkunKasir extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox( height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: AccountWidget(),
-              )
+              SizedBox(
+                height: 20,
+              ),
+              Flexible(
+                child: SingleChildScrollView(
+                  child: BlocBuilder<KasirBloc, KasirState>(
+                    builder: (context, state) {
+                      if (state.status == KasirStatus.loading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (state.status == KasirStatus.error) {
+                        return Center(
+                          child: Text(state.errorMessage ?? ''),
+                        );
+                      } else if (state.status == KasirStatus.loaded) {
+                        final List<Kasir> kasirData = state.kasirData;
+
+                        if (kasirData.isEmpty) {
+                          return Text('Tidak ada data kasir');
+                        }
+                        
+                        return Column(
+                          children: kasirData.map((kasir) => 
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: CardAccountWidget(kasir: kasir,),
+                            ),
+                          ).toList(),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),

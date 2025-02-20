@@ -7,92 +7,114 @@ class KasirLocalDataSource {
 
   KasirLocalDataSource(this.database);
 
-  Future<List<Kasir>?> getAllKasir({Map<String, dynamic> filter = const {}}) async {
-    String whereClause = '';
-    List<dynamic> whereArgs = [];
+  Future<List<Kasir>?> getAllKasir(
+      {Map<String, dynamic> filter = const {}}) async {
+    try {
+      String? whereClause;
+      List<dynamic>? whereArgs;
 
     if (filter.isNotEmpty) {
-      filter.forEach((key, value) {
-        whereClause += whereClause.isEmpty ? '$key = ?' : ' AND $key = ?';
-        whereArgs.add(value);
-      });
+      final conditions = filter.entries.map((entry) => '${entry.key} = ?');
+      whereClause = conditions.join(' AND ');
+      whereArgs = filter.values.toList();
     }
 
-    final query = await database.query(
-      'kasir',
-      where: whereClause,
-      whereArgs: whereArgs,
-    );
+      final query = await database.query(
+        'kasir',
+        where: whereClause,
+        whereArgs: whereArgs,
+      );
 
-    if (query.isEmpty) {
+      if (query.isEmpty) {
+        return null;
+      }
+
+      return query.map((kasir) => KasirModel.fromMap(kasir)).toList();
+    } catch (e) {
+      print('Error KasirLocalDataSource getAllKasir: ${e.toString()}');
       return null;
     }
-
-    return query.map((kasir) => KasirModel.fromMap(kasir)).toList();
   }
 
   Future<Kasir?> getKasir({Map<String, dynamic> filter = const {}}) async {
-    String whereClause = '';
-    List<dynamic> whereArgs = [];
+    try {
+      String whereClause = '';
+      List<dynamic> whereArgs = [];
 
-    if (filter.isNotEmpty) {
-      filter.forEach((key, value) {
-        whereClause += whereClause.isEmpty ? '$key = ?' : ' AND $key = ?';
-        whereArgs.add(value);
-      });
-    }
+      if (filter.isNotEmpty) {
+        filter.forEach((key, value) {
+          whereClause += whereClause.isEmpty ? '$key = ?' : ' AND $key = ?';
+          whereArgs.add(value);
+        });
+      }
 
-    final query = await database.query(
-      'kasir',
-      where: whereClause,
-      whereArgs: whereArgs,
-      limit: 1,
-    );
+      final query = await database.query(
+        'kasir',
+        where: whereClause,
+        whereArgs: whereArgs,
+        limit: 1,
+      );
 
-    if (query.isEmpty) {
+      if (query.isEmpty) {
+        return null;
+      }
+
+      return KasirModel.fromMap(query.first);
+    } catch (e) {
+      print('Error KasirLocalDataSource getAllKasir: ${e.toString()}');
       return null;
     }
-
-    return KasirModel.fromMap(query.first);
   }
 
   Future<void> addKasir(Kasir newKasir) async {
-    final kasirModel = KasirModel(
-      id: newKasir.id,
-      nama: newKasir.nama,
-      noHp: newKasir.noHp,
-      pin: newKasir.pin,
-      role: newKasir.role,
-    );
+    try {
+      final kasirModel = KasirModel(
+        id: newKasir.id,
+        nama: newKasir.nama,
+        noHp: newKasir.noHp,
+        pin: newKasir.pin,
+        role: newKasir.role,
+      );
 
-    await database.insert(
-      'kasir',
-      kasirModel.toMap(),
-    );
+      await database.insert(
+        'kasir',
+        kasirModel.toMap(),
+      );
+    } catch (e) {
+      print('Error KasirLocalDataSource addKasir: ${e.toString()}');
+    }
   }
 
   Future<void> updateKasir(Kasir kasir) async {
-    final kasirModel = KasirModel(
-      id: kasir.id,
-      nama: kasir.nama,
-      noHp: kasir.noHp,
-      pin: kasir.pin,
-      role: kasir.role,
-    );
+    try {
+      final kasirModel = KasirModel(
+        id: kasir.id,
+        nama: kasir.nama,
+        noHp: kasir.noHp,
+        pin: kasir.pin,
+        role: kasir.role,
+      );
 
-    await database.update(
-      'kasir',
-      kasirModel.toMap(),
-      where: 'id = ?',
-      whereArgs: [kasir.id],
-    );
+      await database.update(
+        'kasir',
+        kasirModel.toMap(),
+        where: 'id = ?',
+        whereArgs: [kasir.id],
+      );
+    } catch (e) {
+      print('Error KasirLocalDataSource updateKasir: ${e.toString()}');
+    }
   }
 
   Future<void> deleteKasir(int id) async {
-    await database.delete(
-      'kasir',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    try {
+      await database.delete(
+        'kasir',
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+    } catch (e) {
+      print('Error KasirLocalDataSource deleteKasir: ${e.toString()}');
+    }
   }
 }

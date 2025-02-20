@@ -4,7 +4,8 @@ import 'package:kasmini_app/core/database_manager.dart';
 import 'package:kasmini_app/data/datasources/kasir_local_data_source.dart';
 import 'package:kasmini_app/data/repositories/kasir_repo_impl.dart';
 import 'package:kasmini_app/domain/repositories/kasir_repo.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_cubit.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/current_kasir_cubit.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/kasir_bloc.dart';
 import 'package:kasmini_app/presentation/bloc/navbar_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -21,26 +22,38 @@ Future<void> init() async {
 
   // datasources
   sl.registerLazySingleton<KasirLocalDataSource>(
-    () => KasirLocalDataSource(sl.get<Database>()),
+    () => KasirLocalDataSource(
+      sl.get<Database>(),
+    ),
   );
 
   // repositories
   sl.registerLazySingleton<KasirRepo>(
-    () => KasirRepoImpl(sl.get<KasirLocalDataSource>()),
+    () => KasirRepoImpl(
+      sl.get<KasirLocalDataSource>(),
+    ),
   );
 
   // services
   sl.registerLazySingleton<KasirPreferencesService>(
-    () => KasirPreferencesService(sl.get<SharedPreferences>()),
+    () => KasirPreferencesService(
+      sl.get<SharedPreferences>(),
+    ),
   );
 
   // bloc
-  sl.registerLazySingleton<KasirCubit>(
-    () => KasirCubit(
+  sl.registerLazySingleton<NavbarCubit>(() => NavbarCubit());
+
+  sl.registerLazySingleton<CurrentKasirCubit>(
+    () => CurrentKasirCubit(
       sl.get<KasirPreferencesService>(),
       sl.get<KasirRepo>(),
     ),
   );
 
-  sl.registerLazySingleton<NavbarCubit>(() => NavbarCubit());
+  sl.registerLazySingleton<KasirBloc>(
+    () => KasirBloc(
+      sl.get<KasirRepo>(),
+    ),
+  );
 }
