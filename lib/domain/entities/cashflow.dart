@@ -15,7 +15,7 @@ class Cashflow {
   final CashflowType tipe;
 
   Cashflow({
-    required this.id,
+    this.id,
     required this.kasirId,
     required this.judul,
     required this.catatan,

@@ -13,9 +13,9 @@ class Kasir {
   final KasirRole role;
 
   Kasir({
-    required this.id,
+    this.id,
     required this.nama,
-    required this.noHp,
+    this.noHp,
     required this.pin,
     required this.role,
   });
