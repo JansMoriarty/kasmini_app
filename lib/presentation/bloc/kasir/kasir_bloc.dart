@@ -8,7 +8,7 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
   final KasirRepo _kasirRepo;
 
   KasirBloc(this._kasirRepo) : super(const KasirState()) {
-    on<LoadKasir>((event, emit) async {
+    on<LoadAllKasir>((event, emit) async {
       emit(state.copyWith(status: KasirStatus.loading));
 
       try {
@@ -17,6 +17,26 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
         emit(state.copyWith(
           status: KasirStatus.loaded,
           kasirData: kasirData ?? [],
+        ));
+      } catch (e) {
+        emit(state.copyWith(
+          status: KasirStatus.error,
+          errorMessage: e.toString(),
+        ));
+      }
+    });
+
+    on<LoadKasirById>((event, emit) async {
+      emit(state.copyWith(status: KasirStatus.loading));
+
+      try {
+        final Kasir? kasirData = await _kasirRepo.getKasir(
+          filter: {'id': event.id},
+        );
+
+        emit(state.copyWith(
+          status: KasirStatus.loaded,
+          kasirData: kasirData != null ? [kasirData] : [],
         ));
       } catch (e) {
         emit(state.copyWith(
@@ -35,7 +55,7 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
           nama: event.nama,
           noHp: event.noHp,
           pin: event.pin,
-          role: event.role,
+          role: KasirRole.kasir,
         );
 
         await _kasirRepo.addKasir(newKasir);
@@ -57,42 +77,29 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
       emit(state.copyWith(status: KasirStatus.loading));
 
       try {
-        final int index = state.kasirData.indexWhere(
-          (kasir) => kasir.id == event.id,
-        );
-        final Kasir updatedKasir;
+        final Kasir? existingKasir =
+            await _kasirRepo.getKasir(filter: {'id': event.id});
 
-        if (index != -1) {
-          updatedKasir = Kasir(
-            id: event.id,
-            nama: event.nama,
-            noHp: event.noHp,
-            pin: event.pin,
-            role: state.kasirData[index].role,
-          );
-        } else {
-          final Kasir? existingKasir = await _kasirRepo.getKasir({
-            'id': event.id,
-          });
-
-          if (existingKasir == null) {
-            emit(state.copyWith(
-              status: KasirStatus.error,
-              errorMessage: "Kasir not found",
-            ));
-            return;
-          }
-          
-          updatedKasir = Kasir(
-            id: event.id,
-            nama: event.nama,
-            noHp: event.noHp,
-            pin: event.pin,
-            role: existingKasir.role,
-          );
+        if (existingKasir == null) {
+          emit(state.copyWith(
+            status: KasirStatus.error,
+            errorMessage: 'Kasir tidak ditemukan',
+          ));
+          return;
         }
 
+        final Kasir updatedKasir = Kasir(
+          id: event.id,
+          nama: event.nama,
+          noHp: event.noHp,
+          pin: event.pin,
+          role: existingKasir.role,
+        );
+
         await _kasirRepo.updateKasir(updatedKasir);
+
+
+        
         final List<Kasir>? updatedKasirData = await _kasirRepo.getAllKasir();
 
         emit(state.copyWith(

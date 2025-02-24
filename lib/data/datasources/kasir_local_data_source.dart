@@ -13,14 +13,14 @@ class KasirLocalDataSource {
       String? whereClause;
       List<dynamic>? whereArgs;
 
-    if (filter.isNotEmpty) {
-      final conditions = filter.entries.map((entry) => '${entry.key} = ?');
-      whereClause = conditions.join(' AND ');
-      whereArgs = filter.values.toList();
-    }
+      if (filter.isNotEmpty) {
+        final conditions = filter.entries.map((entry) => '${entry.key} = ?');
+        whereClause = conditions.join(' AND ');
+        whereArgs = filter.values.toList();
+      }
 
       final query = await database.query(
-        'kasir',
+        Kasir.tableName,
         where: whereClause,
         whereArgs: whereArgs,
       );
@@ -49,7 +49,7 @@ class KasirLocalDataSource {
       }
 
       final query = await database.query(
-        'kasir',
+        Kasir.tableName,
         where: whereClause,
         whereArgs: whereArgs,
         limit: 1,
@@ -77,7 +77,7 @@ class KasirLocalDataSource {
       );
 
       await database.insert(
-        'kasir',
+        Kasir.tableName,
         kasirModel.toMap(),
       );
     } catch (e) {
@@ -96,7 +96,7 @@ class KasirLocalDataSource {
       );
 
       await database.update(
-        'kasir',
+        Kasir.tableName,
         kasirModel.toMap(),
         where: 'id = ?',
         whereArgs: [kasir.id],
@@ -109,7 +109,7 @@ class KasirLocalDataSource {
   Future<void> deleteKasir(int id) async {
     try {
       await database.delete(
-        'kasir',
+        Kasir.tableName,
         where: 'id = ?',
         whereArgs: [id],
       );

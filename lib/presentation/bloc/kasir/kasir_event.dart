@@ -1,8 +1,22 @@
-abstract class KasirEvent {
+import 'package:equatable/equatable.dart';
+
+abstract class KasirEvent extends Equatable {
   const KasirEvent();
+
+  @override
+  List<Object?> get props => [];
 }
 
-class LoadKasir extends KasirEvent {}
+class LoadAllKasir extends KasirEvent {}
+
+class LoadKasirById extends KasirEvent {
+  final int id;
+
+  const LoadKasirById(this.id);
+
+  @override
+  List<Object?> get props => [id];
+}
 
 class AddKasir extends KasirEvent {
   final String nama;
@@ -16,6 +30,9 @@ class AddKasir extends KasirEvent {
     required this.pin,
     required this.role,
   });
+
+  @override
+  List<Object?> get props => [nama, noHp, pin, role];
 }
 
 class UpdateKasir extends KasirEvent {
@@ -23,15 +40,16 @@ class UpdateKasir extends KasirEvent {
   final String nama;
   final String? noHp;
   final String pin;
-  final String role;
 
   const UpdateKasir({
     required this.id,
     required this.nama,
     this.noHp,
     required this.pin,
-    required this.role,
   });
+
+  @override
+  List<Object?> get props => [id, nama, noHp, pin];
 }
 
 class DeleteKasir extends KasirEvent {
@@ -40,4 +58,7 @@ class DeleteKasir extends KasirEvent {
   const DeleteKasir({
     required this.id,
   });
+
+  @override
+  List<Object?> get props => [id];
 }

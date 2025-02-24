@@ -51,7 +51,7 @@ Future<void> init() async {
     ),
   );
 
-  sl.registerLazySingleton<KasirBloc>(
+  sl.registerFactory<KasirBloc>(
     () => KasirBloc(
       sl.get<KasirRepo>(),
     ),

@@ -1,8 +1,16 @@
+import 'package:equatable/equatable.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
 
-enum KasirStatus { initial, loading, loaded, error }
+enum KasirStatus {
+  initial,
+  loading,
+  loaded,
+  error,
+  updating,
+  updated,
+}
 
-class KasirState {
+class KasirState extends Equatable {
   final KasirStatus status;
   final List<Kasir> kasirData;
   final String? errorMessage;
@@ -24,4 +32,7 @@ class KasirState {
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
+
+  @override
+  List<Object?> get props => [status, kasirData, errorMessage];
 }

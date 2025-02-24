@@ -1,9 +1,16 @@
+enum KasirRole {
+  owner,
+  kasir,
+}
+
 class Kasir {
+  static const tableName = 'kasir';
+
   final int? id;
   final String nama;
   final String? noHp;
   final String pin;
-  final String role;
+  final KasirRole role;
 
   Kasir({
     required this.id,

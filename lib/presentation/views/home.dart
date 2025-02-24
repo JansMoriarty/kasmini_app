@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/presentation/design/home/welcome_card_widget.dart';
 import 'package:kasmini_app/presentation/pages/home/kasir_page.dart';
-import 'package:kasmini_app/presentation/views/account/kasir_view.dart';
+import 'package:kasmini_app/presentation/views/account/list_kasir_view.dart';
 import 'package:kasmini_app/presentation/views/edit_toko.dart';
 import 'package:kasmini_app/presentation/views/example_prod.dart';
 import 'package:kasmini_app/presentation/views/history/history.dart';

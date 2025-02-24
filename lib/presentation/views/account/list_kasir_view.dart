@@ -4,21 +4,22 @@ import 'package:kasmini_app/domain/entities/kasir.dart';
 import 'package:kasmini_app/presentation/bloc/kasir/kasir_bloc.dart';
 import 'package:kasmini_app/presentation/bloc/kasir/kasir_event.dart';
 import 'package:kasmini_app/presentation/bloc/kasir/kasir_state.dart';
-import 'package:kasmini_app/presentation/design/card_account_widget.dart';
+import 'package:kasmini_app/presentation/design/card_kasir_widget.dart';
+import 'package:kasmini_app/presentation/pages/home/edit_kasir_page.dart';
 import 'package:kasmini_app/presentation/pages/main_page.dart';
 
-class KasirView extends StatefulWidget {
-  const KasirView({super.key});
+class ListKasirView extends StatefulWidget {
+  const ListKasirView({super.key});
 
   @override
-  State<KasirView> createState() => _KasirViewState();
+  State<ListKasirView> createState() => _ListKasirViewState();
 }
 
-class _KasirViewState extends State<KasirView> {
+class _ListKasirViewState extends State<ListKasirView> {
   @override
   void initState() {
     super.initState();
-    context.read<KasirBloc>().add(LoadKasir());
+    context.read<KasirBloc>().add(LoadAllKasir());
   }
 
   @override
@@ -182,35 +183,50 @@ class _KasirViewState extends State<KasirView> {
               ),
               Flexible(
                 child: SingleChildScrollView(
-                  child: BlocBuilder<KasirBloc, KasirState>(
-                    builder: (context, state) {
-                      if (state.status == KasirStatus.loading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (state.status == KasirStatus.error) {
-                        return Center(
-                          child: Text(state.errorMessage ?? ''),
-                        );
-                      } else if (state.status == KasirStatus.loaded) {
-                        final List<Kasir> kasirData = state.kasirData;
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: BlocBuilder<KasirBloc, KasirState>(
+                      builder: (context, state) {
+                        if (state.status == KasirStatus.loading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state.status == KasirStatus.error) {
+                          return Center(
+                            child: Text(state.errorMessage ?? ''),
+                          );
+                        } else if (state.status == KasirStatus.loaded) {
+                          final List<Kasir> kasirData = state.kasirData;
 
-                        if (kasirData.isEmpty) {
-                          return Text('Tidak ada data kasir');
+                          if (kasirData.isEmpty) {
+                            return Text('Tidak ada data kasir');
+                          }
+
+                          return Column(
+                            spacing: 8,
+                            children: kasirData
+                                .map(
+                                  (kasir) => GestureDetector(
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => EditKasirPage(
+                                          kasirId: kasir.id!,
+                                        ),
+                                      ),
+                                    ),
+                                    child: CardKasirWidget(
+                                      kasir: kasir,
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                          );
+                        } else {
+                          return Container();
                         }
-                        
-                        return Column(
-                          children: kasirData.map((kasir) => 
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: CardAccountWidget(kasir: kasir,),
-                            ),
-                          ).toList(),
-                        );
-                      } else {
-                        return Container();
-                      }
-                    },
+                      },
+                    ),
                   ),
                 ),
               ),

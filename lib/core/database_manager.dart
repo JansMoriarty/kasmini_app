@@ -27,7 +27,7 @@ class DatabaseManager {
           CREATE TABLE kasir (
             id INTEGER PRIMARY KEY,
             nama TEXT NOT NULL,
-            no_hp TEXT,
+            noHp TEXT,
             pin TEXT NOT NULL,
             role TEXT NOT NULL
           )

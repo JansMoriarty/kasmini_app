@@ -7,7 +7,8 @@ class CurrentKasirCubit extends Cubit<Kasir?> {
   final KasirPreferencesService _kasirPreferencesService;
   final KasirRepo _kasirRepo;
 
-  CurrentKasirCubit(this._kasirPreferencesService, this._kasirRepo) : super(null) {
+  CurrentKasirCubit(this._kasirPreferencesService, this._kasirRepo)
+      : super(null) {
     _init();
   }
 
@@ -16,7 +17,7 @@ class CurrentKasirCubit extends Cubit<Kasir?> {
     final filter =
         selectedKasirId != null ? {'id': selectedKasirId} : {'role': 'owner'};
 
-    Kasir? kasir = await _kasirRepo.getKasir(filter);
+    Kasir? kasir = await _kasirRepo.getKasir(filter: filter);
 
     if (kasir != null) {
       _kasirPreferencesService.selectedKasirId = kasir.id;
