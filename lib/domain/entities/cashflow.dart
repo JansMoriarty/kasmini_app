@@ -1,4 +1,4 @@
-enum CashflowType {
+enum TipeCashflow {
   pemasukan,
   pengeluaran,
 }
@@ -12,7 +12,7 @@ class Cashflow {
   final String catatan;
   final int nominal;
   final DateTime tanggal;
-  final CashflowType tipe;
+  final TipeCashflow tipe;
 
   Cashflow({
     this.id,

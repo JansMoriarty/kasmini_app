@@ -1,4 +1,4 @@
-enum KasirRole {
+enum RoleKasir {
   owner,
   kasir,
 }
@@ -10,7 +10,7 @@ class Kasir {
   final String nama;
   final String? noHp;
   final String pin;
-  final KasirRole role;
+  final RoleKasir role;
 
   Kasir({
     this.id,

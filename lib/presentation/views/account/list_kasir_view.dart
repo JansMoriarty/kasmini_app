@@ -187,15 +187,15 @@ class _ListKasirViewState extends State<ListKasirView> {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: BlocBuilder<KasirBloc, KasirState>(
                       builder: (context, state) {
-                        if (state.status == KasirStatus.loading) {
+                        if (state.status == StatusKasir.loading) {
                           return const Center(
                             child: CircularProgressIndicator(),
                           );
-                        } else if (state.status == KasirStatus.error) {
+                        } else if (state.status == StatusKasir.error) {
                           return Center(
                             child: Text(state.errorMessage ?? ''),
                           );
-                        } else if (state.status == KasirStatus.loaded) {
+                        } else if (state.status == StatusKasir.loaded) {
                           final List<Kasir> kasirData = state.kasirData;
 
                           if (kasirData.isEmpty) {

@@ -9,25 +9,25 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
 
   KasirBloc(this._kasirRepo) : super(const KasirState()) {
     on<LoadAllKasir>((event, emit) async {
-      emit(state.copyWith(status: KasirStatus.loading));
+      emit(state.copyWith(status: StatusKasir.loading));
 
       try {
         final List<Kasir>? kasirData = await _kasirRepo.getAllKasir();
 
         emit(state.copyWith(
-          status: KasirStatus.loaded,
+          status: StatusKasir.loaded,
           kasirData: kasirData ?? [],
         ));
       } catch (e) {
         emit(state.copyWith(
-          status: KasirStatus.error,
+          status: StatusKasir.error,
           errorMessage: e.toString(),
         ));
       }
     });
 
     on<LoadKasirById>((event, emit) async {
-      emit(state.copyWith(status: KasirStatus.loading));
+      emit(state.copyWith(status: StatusKasir.loading));
 
       try {
         final Kasir? kasirData = await _kasirRepo.getKasir(
@@ -35,19 +35,19 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
         );
 
         emit(state.copyWith(
-          status: KasirStatus.loaded,
+          status: StatusKasir.loaded,
           kasirData: kasirData != null ? [kasirData] : [],
         ));
       } catch (e) {
         emit(state.copyWith(
-          status: KasirStatus.error,
+          status: StatusKasir.error,
           errorMessage: e.toString(),
         ));
       }
     });
 
     on<AddKasir>((event, emit) async {
-      emit(state.copyWith(status: KasirStatus.loading));
+      emit(state.copyWith(status: StatusKasir.loading));
 
       try {
         final Kasir newKasir = Kasir(
@@ -55,26 +55,26 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
           nama: event.nama,
           noHp: event.noHp,
           pin: event.pin,
-          role: KasirRole.kasir,
+          role: RoleKasir.kasir,
         );
 
         await _kasirRepo.addKasir(newKasir);
         final List<Kasir>? updatedKasirData = await _kasirRepo.getAllKasir();
 
         emit(state.copyWith(
-          status: KasirStatus.loaded,
+          status: StatusKasir.loaded,
           kasirData: updatedKasirData ?? [],
         ));
       } catch (e) {
         emit(state.copyWith(
-          status: KasirStatus.error,
+          status: StatusKasir.error,
           errorMessage: e.toString(),
         ));
       }
     });
 
     on<UpdateKasir>((event, emit) async {
-      emit(state.copyWith(status: KasirStatus.loading));
+      emit(state.copyWith(status: StatusKasir.loading));
 
       try {
         final Kasir? existingKasir =
@@ -82,7 +82,7 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
 
         if (existingKasir == null) {
           emit(state.copyWith(
-            status: KasirStatus.error,
+            status: StatusKasir.error,
             errorMessage: 'Kasir tidak ditemukan',
           ));
           return;
@@ -103,31 +103,31 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
         final List<Kasir>? updatedKasirData = await _kasirRepo.getAllKasir();
 
         emit(state.copyWith(
-          status: KasirStatus.loaded,
+          status: StatusKasir.loaded,
           kasirData: updatedKasirData ?? [],
         ));
       } catch (e) {
         emit(state.copyWith(
-          status: KasirStatus.error,
+          status: StatusKasir.error,
           errorMessage: e.toString(),
         ));
       }
     });
 
     on<DeleteKasir>((event, emit) async {
-      emit(state.copyWith(status: KasirStatus.loading));
+      emit(state.copyWith(status: StatusKasir.loading));
 
       try {
         await _kasirRepo.deleteKasir(event.id);
         final List<Kasir>? updatedKasirData = await _kasirRepo.getAllKasir();
 
         emit(state.copyWith(
-          status: KasirStatus.loaded,
+          status: StatusKasir.loaded,
           kasirData: updatedKasirData ?? [],
         ));
       } catch (e) {
         emit(state.copyWith(
-          status: KasirStatus.error,
+          status: StatusKasir.error,
           errorMessage: e.toString(),
         ));
       }

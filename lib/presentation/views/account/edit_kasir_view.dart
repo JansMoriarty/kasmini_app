@@ -31,7 +31,7 @@ class EditKasirViewState extends State<EditKasirView> {
     ));
 
     _kasirBloc.stream.listen((state) {
-      if (state.status == KasirStatus.loaded) {
+      if (state.status == StatusKasir.loaded) {
         Navigator.pop(context);
       }
     });
@@ -229,15 +229,15 @@ class EditKasirViewState extends State<EditKasirView> {
                     const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                 child: BlocBuilder<KasirBloc, KasirState>(
                   builder: (context, state) {
-                    if (state.status == KasirStatus.loading) {
+                    if (state.status == StatusKasir.loading) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    } else if (state.status == KasirStatus.error) {
+                    } else if (state.status == StatusKasir.error) {
                       return Center(
                         child: Text(state.errorMessage ?? ''),
                       );
-                    } else if (state.status == KasirStatus.loaded) {
+                    } else if (state.status == StatusKasir.loaded) {
                       final List<Kasir> kasirData = state.kasirData;
 
                       if (kasirData.isEmpty) {

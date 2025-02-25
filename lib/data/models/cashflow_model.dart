@@ -19,7 +19,7 @@ class CashflowModel extends Cashflow {
       catatan: map['catatan'] as String,
       nominal: map['nominal'] as int,
       tanggal: DateTime.parse(map['tanggal']),
-      tipe: CashflowType.values.byName(map['tipe']),
+      tipe: TipeCashflow.values.byName(map['tipe']),
     );
   }
 

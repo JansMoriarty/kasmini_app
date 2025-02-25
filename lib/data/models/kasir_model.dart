@@ -15,7 +15,7 @@ class KasirModel extends Kasir {
       nama: map['nama'] as String,
       noHp: map['noHp'] as String?,
       pin: map['pin'] as String,
-      role: KasirRole.values.byName(map['role']),
+      role: RoleKasir.values.byName(map['role']),
     );
   }
 
