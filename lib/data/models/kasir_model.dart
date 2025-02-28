@@ -28,4 +28,20 @@ class KasirModel extends Kasir {
       'role': role.name,
     };
   }
+
+  KasirModel copyWith({
+    int? id,
+    String? nama,
+    String? noHp,
+    String? pin,
+    RoleKasir? role,
+  }) {
+    return KasirModel(
+      id: id ?? this.id,
+      nama: nama ?? this.nama,
+      noHp: noHp ?? this.noHp,
+      pin: pin ?? this.pin,
+      role: role ?? this.role,
+    );
+  }
 }

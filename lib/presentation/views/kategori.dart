@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kasmini_app/presentation/views/example_prod.dart';
+import 'package:kasmini_app/presentation/views/product/list_produk_view.dart';
 import 'package:kasmini_app/presentation/views/home.dart';
 import 'package:lottie/lottie.dart';
 

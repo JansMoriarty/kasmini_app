@@ -7,13 +7,12 @@ class KasirLocalDataSource {
 
   KasirLocalDataSource(this.database);
 
-  Future<List<Kasir>?> getAllKasir(
-      {Map<String, dynamic> filter = const {}}) async {
+  Future<List<Kasir>?> getAllKasir([Map<String, dynamic>? filter]) async {
     try {
       String? whereClause;
       List<dynamic>? whereArgs;
 
-      if (filter.isNotEmpty) {
+      if (filter != null && filter.isNotEmpty) {
         final conditions = filter.entries.map((entry) => '${entry.key} = ?');
         whereClause = conditions.join(' AND ');
         whereArgs = filter.values.toList();
@@ -36,16 +35,15 @@ class KasirLocalDataSource {
     }
   }
 
-  Future<Kasir?> getKasir({Map<String, dynamic> filter = const {}}) async {
+  Future<Kasir?> getKasirById([Map<String, dynamic>? filter]) async {
     try {
-      String whereClause = '';
-      List<dynamic> whereArgs = [];
+      String? whereClause;
+      List<dynamic>? whereArgs;
 
-      if (filter.isNotEmpty) {
-        filter.forEach((key, value) {
-          whereClause += whereClause.isEmpty ? '$key = ?' : ' AND $key = ?';
-          whereArgs.add(value);
-        });
+      if (filter != null && filter.isNotEmpty) {
+        final conditions = filter.entries.map((entry) => '${entry.key} = ?');
+        whereClause = conditions.join(' AND ');
+        whereArgs = filter.values.toList();
       }
 
       final query = await database.query(

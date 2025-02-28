@@ -8,15 +8,15 @@ class KasirRepoImpl implements KasirRepo {
   KasirRepoImpl(this.localDataSource);
 
   @override
-  Future<List<Kasir>?> getAllKasir({Map<String, dynamic> filter = const {}}) async {
-    final result = await localDataSource.getAllKasir(filter: filter);
+  Future<List<Kasir>?> getAllKasir([Map<String, dynamic>? filter]) async {
+    final result = await localDataSource.getAllKasir(filter);
 
     return result;
   }
 
   @override
-  Future<Kasir?> getKasir({Map<String, dynamic> filter = const {}}) async {
-    final result = await localDataSource.getKasir(filter: filter);
+  Future<Kasir?> getKasir([Map<String, dynamic>? filter]) async {
+    final result = await localDataSource.getKasirById(filter);
 
     return result;
   }

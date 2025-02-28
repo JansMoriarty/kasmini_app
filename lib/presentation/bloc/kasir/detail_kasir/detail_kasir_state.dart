@@ -1,32 +1,32 @@
 import 'package:equatable/equatable.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
 
-enum StatusKasir {
+enum DetailKasirStatus {
   initial,
   loading,
   loaded,
-  error,
   updating,
   updated,
+  error,
 }
 
-class KasirState extends Equatable {
-  final StatusKasir status;
-  final List<Kasir> kasirData;
+class DetailKasirState extends Equatable {
+  final DetailKasirStatus status;
+  final Kasir? kasirData;
   final String? errorMessage;
 
-  const KasirState({
-    this.status = StatusKasir.initial,
-    this.kasirData = const [],
+  const DetailKasirState({
+    this.status = DetailKasirStatus.initial,
+    this.kasirData,
     this.errorMessage,
   });
 
-  KasirState copyWith({
-    StatusKasir? status,
-    List<Kasir>? kasirData,
+  DetailKasirState copyWith({
+    DetailKasirStatus? status,
+    Kasir? kasirData,
     String? errorMessage,
   }) {
-    return KasirState(
+    return DetailKasirState(
       status: status ?? this.status,
       kasirData: kasirData ?? this.kasirData,
       errorMessage: errorMessage ?? this.errorMessage,

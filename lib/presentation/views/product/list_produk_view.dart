@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/presentation/design/ex_prodwidget.dart';
+import 'package:kasmini_app/presentation/pages/main_page.dart';
 import 'package:kasmini_app/presentation/views/add_prod.dart';
 import 'package:kasmini_app/presentation/views/home.dart';
 import 'package:kasmini_app/presentation/views/kategori.dart';
@@ -44,7 +45,7 @@ class Product extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MainView()));
+                                  builder: (context) => MainPage()));
                         },
                       ),
                     ),

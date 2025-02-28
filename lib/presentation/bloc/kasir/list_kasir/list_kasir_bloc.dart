@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
 import 'package:kasmini_app/domain/repositories/kasir_repo.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_event.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_state.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/list_kasir/list_kasir_event.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/list_kasir/list_kasir_state.dart';
 
-class KasirBloc extends Bloc<KasirEvent, KasirState> {
+class ListKasirBloc extends Bloc<ListKasirEvent, ListKasirState> {
   final KasirRepo _kasirRepo;
 
-  KasirBloc(this._kasirRepo) : super(const KasirState()) {
+  ListKasirBloc(this._kasirRepo) : super(const ListKasirState()) {
     on<LoadAllKasir>((event, emit) async {
       emit(state.copyWith(status: StatusKasir.loading));
 
@@ -17,26 +17,6 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
         emit(state.copyWith(
           status: StatusKasir.loaded,
           kasirData: kasirData ?? [],
-        ));
-      } catch (e) {
-        emit(state.copyWith(
-          status: StatusKasir.error,
-          errorMessage: e.toString(),
-        ));
-      }
-    });
-
-    on<LoadKasirById>((event, emit) async {
-      emit(state.copyWith(status: StatusKasir.loading));
-
-      try {
-        final Kasir? kasirData = await _kasirRepo.getKasir(
-          filter: {'id': event.id},
-        );
-
-        emit(state.copyWith(
-          status: StatusKasir.loaded,
-          kasirData: kasirData != null ? [kasirData] : [],
         ));
       } catch (e) {
         emit(state.copyWith(
@@ -59,47 +39,6 @@ class KasirBloc extends Bloc<KasirEvent, KasirState> {
         );
 
         await _kasirRepo.addKasir(newKasir);
-        final List<Kasir>? updatedKasirData = await _kasirRepo.getAllKasir();
-
-        emit(state.copyWith(
-          status: StatusKasir.loaded,
-          kasirData: updatedKasirData ?? [],
-        ));
-      } catch (e) {
-        emit(state.copyWith(
-          status: StatusKasir.error,
-          errorMessage: e.toString(),
-        ));
-      }
-    });
-
-    on<UpdateKasir>((event, emit) async {
-      emit(state.copyWith(status: StatusKasir.loading));
-
-      try {
-        final Kasir? existingKasir =
-            await _kasirRepo.getKasir(filter: {'id': event.id});
-
-        if (existingKasir == null) {
-          emit(state.copyWith(
-            status: StatusKasir.error,
-            errorMessage: 'Kasir tidak ditemukan',
-          ));
-          return;
-        }
-
-        final Kasir updatedKasir = Kasir(
-          id: event.id,
-          nama: event.nama,
-          noHp: event.noHp,
-          pin: event.pin,
-          role: existingKasir.role,
-        );
-
-        await _kasirRepo.updateKasir(updatedKasir);
-
-
-        
         final List<Kasir>? updatedKasirData = await _kasirRepo.getAllKasir();
 
         emit(state.copyWith(

@@ -17,7 +17,7 @@ class CurrentKasirCubit extends Cubit<Kasir?> {
     final filter =
         selectedKasirId != null ? {'id': selectedKasirId} : {'role': 'owner'};
 
-    Kasir? kasir = await _kasirRepo.getKasir(filter: filter);
+    Kasir? kasir = await _kasirRepo.getKasir(filter);
 
     if (kasir != null) {
       _kasirPreferencesService.selectedKasirId = kasir.id;

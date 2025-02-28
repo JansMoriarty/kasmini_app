@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_bloc.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_event.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_state.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/detail_kasir/detail_kasir_bloc.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/detail_kasir/detail_kasir_event.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/detail_kasir/detail_kasir_state.dart';
 
 class EditKasirView extends StatefulWidget {
   final int kasirId;
@@ -16,33 +16,27 @@ class EditKasirView extends StatefulWidget {
 }
 
 class EditKasirViewState extends State<EditKasirView> {
-  late final KasirBloc _kasirBloc;
+  late final DetailKasirBloc _detailKasirBloc;
 
   final TextEditingController namaController = TextEditingController();
   final TextEditingController noHpController = TextEditingController();
   final TextEditingController pinController = TextEditingController();
 
   void onSubmit() {
-    _kasirBloc.add(UpdateKasir(
+    _detailKasirBloc.add(UpdateKasir(
       id: widget.kasirId,
       nama: namaController.text,
       noHp: noHpController.text,
       pin: pinController.text,
     ));
-
-    _kasirBloc.stream.listen((state) {
-      if (state.status == StatusKasir.loaded) {
-        Navigator.pop(context);
-      }
-    });
   }
 
   @override
   void initState() {
     super.initState();
 
-    _kasirBloc = context.read<KasirBloc>();
-    _kasirBloc.add(LoadKasirById(widget.kasirId));
+    _detailKasirBloc = context.read<DetailKasirBloc>();
+    _detailKasirBloc.add(LoadKasirById(widget.kasirId));
   }
 
   // Menyimpan gambar avatar yang dipilih
@@ -227,28 +221,27 @@ class EditKasirViewState extends State<EditKasirView> {
             Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-                child: BlocBuilder<KasirBloc, KasirState>(
+                child: BlocBuilder<DetailKasirBloc, DetailKasirState>(
                   builder: (context, state) {
-                    if (state.status == StatusKasir.loading) {
+                    if (state.status == DetailKasirStatus.loading) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    } else if (state.status == StatusKasir.error) {
+                    } else if (state.status == DetailKasirStatus.error) {
                       return Center(
                         child: Text(state.errorMessage ?? ''),
                       );
-                    } else if (state.status == StatusKasir.loaded) {
-                      final List<Kasir> kasirData = state.kasirData;
+                    } else if (state.status == DetailKasirStatus.loaded ||
+                        state.status == DetailKasirStatus.updated) {
+                      final Kasir? kasirData = state.kasirData;
 
-                      if (kasirData.isEmpty) {
+                      if (kasirData == null) {
                         return Text('Tidak ada kasir');
                       }
 
-                      final Kasir kasir = kasirData.first;
-
-                      namaController.text = kasir.nama;
-                      noHpController.text = kasir.noHp ?? '';
-                      pinController.text = kasir.pin;
+                      namaController.text = kasirData.nama;
+                      noHpController.text = kasirData.noHp ?? '';
+                      pinController.text = kasirData.pin;
 
                       return Column(
                         children: [

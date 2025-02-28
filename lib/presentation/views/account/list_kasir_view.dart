@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_bloc.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_event.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/kasir_state.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/list_kasir/list_kasir_bloc.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/list_kasir/list_kasir_event.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/list_kasir/list_kasir_state.dart';
 import 'package:kasmini_app/presentation/design/card_kasir_widget.dart';
 import 'package:kasmini_app/presentation/pages/home/edit_kasir_page.dart';
 import 'package:kasmini_app/presentation/pages/main_page.dart';
@@ -19,7 +19,7 @@ class _ListKasirViewState extends State<ListKasirView> {
   @override
   void initState() {
     super.initState();
-    context.read<KasirBloc>().add(LoadAllKasir());
+    context.read<ListKasirBloc>().add(LoadAllKasir());
   }
 
   @override
@@ -185,7 +185,7 @@ class _ListKasirViewState extends State<ListKasirView> {
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: BlocBuilder<KasirBloc, KasirState>(
+                    child: BlocBuilder<ListKasirBloc, ListKasirState>(
                       builder: (context, state) {
                         if (state.status == StatusKasir.loading) {
                           return const Center(

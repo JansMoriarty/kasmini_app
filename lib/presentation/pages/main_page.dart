@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:kasmini_app/presentation/bloc/kasir/current_kasir_cubit.dart';
+import 'package:kasmini_app/presentation/bloc/kasir/current_kasir/current_kasir_cubit.dart';
 import 'package:kasmini_app/presentation/bloc/navbar_cubit.dart';
 import 'package:kasmini_app/presentation/views/main_view.dart';
 
