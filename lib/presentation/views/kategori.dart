@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/presentation/pages/main_page.dart';
 import 'package:kasmini_app/presentation/views/product/list_produk_view.dart';
-import 'package:kasmini_app/presentation/views/home.dart';
+import 'package:kasmini_app/presentation/views/home_view.dart';
 import 'package:lottie/lottie.dart';
 
 class Kategori extends StatefulWidget {
@@ -107,7 +108,7 @@ class _KategoriState extends State<Kategori> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) => MainPage()));
                         },
                       ),
                     ),

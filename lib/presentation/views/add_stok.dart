@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kasmini_app/presentation/views/home.dart';
+import 'package:kasmini_app/presentation/views/home_view.dart';
 import 'package:kasmini_app/presentation/views/pilih_prod.dart';
 import 'package:kasmini_app/presentation/views/success.dart';
 

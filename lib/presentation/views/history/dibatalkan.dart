@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/presentation/design/card_historycancel.dart';
+import 'package:kasmini_app/presentation/pages/main_page.dart';
 import 'package:kasmini_app/presentation/views/history/belum_bayar.dart';
 import 'package:kasmini_app/presentation/views/history/belum_lunas.dart';
 import 'package:kasmini_app/presentation/views/history/history.dart';
-import 'package:kasmini_app/presentation/views/home.dart';
+import 'package:kasmini_app/presentation/views/home_view.dart';
 import 'package:kasmini_app/presentation/views/kategori.dart';
 import 'package:lottie/lottie.dart';
 
@@ -46,7 +47,7 @@ class Batal extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) => MainPage()));
                         },
                       ),
                     ),

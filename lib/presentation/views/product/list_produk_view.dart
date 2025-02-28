@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kasmini_app/presentation/design/ex_prodwidget.dart';
 import 'package:kasmini_app/presentation/pages/main_page.dart';
 import 'package:kasmini_app/presentation/views/add_prod.dart';
-import 'package:kasmini_app/presentation/views/home.dart';
+import 'package:kasmini_app/presentation/views/home_view.dart';
 import 'package:kasmini_app/presentation/views/kategori.dart';
 import 'package:kasmini_app/presentation/views/main_view.dart';
 

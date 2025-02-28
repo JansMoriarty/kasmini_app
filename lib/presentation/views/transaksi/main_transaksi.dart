@@ -3,7 +3,7 @@ import 'package:kasmini_app/presentation/design/card_prod_stok.dart';
 import 'package:kasmini_app/presentation/design/card_transaksi.dart';
 import 'package:kasmini_app/presentation/design/ex_prodwidget.dart';
 import 'package:kasmini_app/presentation/views/add_prod.dart';
-import 'package:kasmini_app/presentation/views/home.dart';
+import 'package:kasmini_app/presentation/views/home_view.dart';
 import 'package:kasmini_app/presentation/views/kategori.dart';
 
 class MainTransaksi extends StatelessWidget {

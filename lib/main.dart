@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kasmini_app/presentation/views/start.dart';
+import 'package:kasmini_app/presentation/app_theme.dart';
+import 'package:kasmini_app/presentation/pages/main_page.dart';
 import 'package:kasmini_app/core/service_locator.dart' as sl;
 
 void main() async {
@@ -15,7 +16,14 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StartPage(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppTheme.backgroundColor,
+        primaryColor: AppTheme.primaryColor,
+        fontFamily: AppTheme.fontFamily,
+        textTheme: AppTheme.textTheme,
+        bottomNavigationBarTheme: AppTheme.bottomNavigationBarThemeData
+      ),
+      home: MainPage(),
     );
   }
 }

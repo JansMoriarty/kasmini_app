@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/presentation/design/home/welcome_card_widget.dart';
 import 'package:kasmini_app/presentation/pages/home/kasir_page.dart';
-import 'package:kasmini_app/presentation/views/account/list_kasir_view.dart';
 import 'package:kasmini_app/presentation/views/edit_toko.dart';
 import 'package:kasmini_app/presentation/views/product/list_produk_view.dart';
 import 'package:kasmini_app/presentation/views/history/history.dart';
@@ -9,14 +8,14 @@ import 'package:kasmini_app/presentation/views/manage_stok.dart';
 import 'package:kasmini_app/presentation/views/pengeluaran/pengeluaran.dart';
 import 'package:kasmini_app/presentation/views/print_resi.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  MyHomePageState createState() => MyHomePageState();
+  MyHomeViewState createState() => MyHomeViewState();
 }
 
-class MyHomePageState extends State<HomePage> {
+class MyHomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +24,7 @@ class MyHomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: 20,
-              vertical: 52), // Mengurangi padding agar lebih responsif
+              vertical: 52),
           child: Builder(
             builder: (context) {
               return Padding(

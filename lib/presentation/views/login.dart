@@ -3,7 +3,7 @@ import 'package:kasmini_app/presentation/pages/main_page.dart';
 import 'package:kasmini_app/presentation/views/main_view.dart';
 import 'dart:async';
 import 'package:lottie/lottie.dart';
-import 'package:kasmini_app/presentation/views/home.dart';
+import 'package:kasmini_app/presentation/views/home_view.dart';
 
 void main() {
   runApp(const MaterialApp(home: LoginPage()));

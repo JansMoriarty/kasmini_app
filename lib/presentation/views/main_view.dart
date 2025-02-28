@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasmini_app/presentation/bloc/navbar_cubit.dart';
 import 'package:kasmini_app/presentation/design/navbar/bottom_navbar_widget.dart';
-import 'package:kasmini_app/presentation/views/home.dart';
+import 'package:kasmini_app/presentation/views/home_view.dart';
 import 'package:kasmini_app/presentation/views/manage_stok.dart';
 import 'package:kasmini_app/presentation/views/report/main_report.dart';
 import 'package:kasmini_app/presentation/views/transaksi/main_transaksi.dart';
 
 const List<Widget> pages = [
-  HomePage(),
+  HomeView(),
   MainReport(),
   MainTransaksi(),
   ManageStok(),

@@ -6,7 +6,7 @@ import 'package:kasmini_app/presentation/views/history/belum_bayar.dart';
 import 'package:kasmini_app/presentation/views/history/belum_lunas.dart';
 import 'package:kasmini_app/presentation/views/history/detail_history.dart';
 import 'package:kasmini_app/presentation/views/history/dibatalkan.dart';
-import 'package:kasmini_app/presentation/views/home.dart';
+import 'package:kasmini_app/presentation/views/home_view.dart';
 import 'package:kasmini_app/presentation/views/kategori.dart';
 import 'package:kasmini_app/presentation/views/main_view.dart';
 import 'package:kasmini_app/presentation/views/pengeluaran/data_pengeluaran.dart';
