@@ -20,9 +20,10 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[100],
-        body: BlocBuilder<NavbarCubit, int>(
-            builder: (context, currIndex) => pages.elementAt(currIndex)),
-        bottomNavigationBar: BottomNavbarWidget());
+      body: BlocBuilder<NavbarCubit, int>(
+        builder: (context, currIndex) => pages.elementAt(currIndex),
+      ),
+      bottomNavigationBar: BottomNavbarWidget(),
+    );
   }
 }
