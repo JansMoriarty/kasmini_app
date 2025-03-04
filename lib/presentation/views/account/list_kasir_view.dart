@@ -16,10 +16,13 @@ class ListKasirView extends StatefulWidget {
 }
 
 class _ListKasirViewState extends State<ListKasirView> {
+  late final ListKasirBloc _listKasirBloc;
+
   @override
   void initState() {
     super.initState();
-    context.read<ListKasirBloc>().add(LoadAllKasir());
+    _listKasirBloc = context.read<ListKasirBloc>();
+    _listKasirBloc.add(LoadAllKasir());
   }
 
   @override
@@ -207,14 +210,18 @@ class _ListKasirViewState extends State<ListKasirView> {
                             children: kasirData
                                 .map(
                                   (kasir) => GestureDetector(
-                                    onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EditKasirPage(
-                                          kasirId: kasir.id!,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => EditKasirPage(
+                                            kasirId: kasir.id!,
+                                          ),
                                         ),
-                                      ),
-                                    ),
+                                      );
+
+                                      _listKasirBloc.add(LoadAllKasir());
+                                    },
                                     child: CardKasirWidget(
                                       kasir: kasir,
                                     ),

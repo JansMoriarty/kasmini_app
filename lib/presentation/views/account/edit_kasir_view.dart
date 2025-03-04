@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
+import 'package:kasmini_app/presentation/app_theme.dart';
 import 'package:kasmini_app/presentation/bloc/kasir/detail_kasir/detail_kasir_bloc.dart';
 import 'package:kasmini_app/presentation/bloc/kasir/detail_kasir/detail_kasir_event.dart';
 import 'package:kasmini_app/presentation/bloc/kasir/detail_kasir/detail_kasir_state.dart';
@@ -221,7 +222,18 @@ class EditKasirViewState extends State<EditKasirView> {
             Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-                child: BlocBuilder<DetailKasirBloc, DetailKasirState>(
+                child: BlocConsumer<DetailKasirBloc, DetailKasirState>(
+                  listener: (context, state) {
+                    if (state.status == DetailKasirStatus.updated) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: AppTheme.primaryColor,
+                          content: Text('Data berhasil diubah'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    }
+                  },
                   builder: (context, state) {
                     if (state.status == DetailKasirStatus.loading) {
                       return const Center(
@@ -232,8 +244,11 @@ class EditKasirViewState extends State<EditKasirView> {
                         child: Text(state.errorMessage ?? ''),
                       );
                     } else if (state.status == DetailKasirStatus.loaded ||
+                        state.status == DetailKasirStatus.updating ||
                         state.status == DetailKasirStatus.updated) {
                       final Kasir? kasirData = state.kasirData;
+                      final bool isUpdating =
+                          state.status == DetailKasirStatus.updating;
 
                       if (kasirData == null) {
                         return Text('Tidak ada kasir');
@@ -298,6 +313,7 @@ class EditKasirViewState extends State<EditKasirView> {
                             borderRadius: BorderRadius.circular(8),
                             child: TextField(
                               controller: namaController,
+                              enabled: !isUpdating,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Color.fromARGB(255, 233, 233, 233),
@@ -331,6 +347,7 @@ class EditKasirViewState extends State<EditKasirView> {
                             borderRadius: BorderRadius.circular(8),
                             child: TextField(
                               controller: noHpController,
+                              enabled: !isUpdating,
                               keyboardType: TextInputType.number,
                               inputFormatters: [
                                 FilteringTextInputFormatter.digitsOnly,
@@ -368,6 +385,7 @@ class EditKasirViewState extends State<EditKasirView> {
                             borderRadius: BorderRadius.circular(8),
                             child: TextField(
                               controller: pinController,
+                              enabled: !isUpdating,
                               keyboardType: TextInputType.number,
                               inputFormatters: [
                                 FilteringTextInputFormatter.digitsOnly,
@@ -397,36 +415,29 @@ class EditKasirViewState extends State<EditKasirView> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        height: 90,
-        child: Container(
-          height: 200,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
+        padding: const EdgeInsets.all(20.0),
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(6),
+            ),
+            fixedSize: Size(double.infinity, 50),
+            backgroundColor: AppTheme.primaryColor,
           ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6)),
-                    fixedSize: Size(double.maxFinite, 50),
-                    elevation: 0,
-                    backgroundColor: const Color(0xff5755fe),
-                    shadowColor: Colors.transparent,
-                  ),
-                  onPressed: onSubmit,
-                  child: Text(
-                    'Simpan',
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        fontFamily: 'Poppins'),
-                  ),
-                ),
-              ),
-            ],
+          onPressed: onSubmit,
+          child: BlocBuilder<DetailKasirBloc, DetailKasirState>(
+            builder: (context, state) {
+              String textMessage = state.status == DetailKasirStatus.updating
+                  ? 'Loading...'
+                  : 'Simpan';
+
+              return Text(
+                textMessage,
+                style: AppTheme.textTheme.bodyMedium
+                    ?.copyWith(color: Colors.white),
+              );
+            },
           ),
         ),
       ),
