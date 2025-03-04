@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
+import 'package:kasmini_app/presentation/app_theme.dart';
 import 'package:kasmini_app/presentation/bloc/kasir/current_kasir/current_kasir_cubit.dart';
 import 'package:kasmini_app/presentation/pages/home/kasir_page.dart';
 import 'package:kasmini_app/presentation/views/edit_toko.dart';
@@ -56,24 +57,19 @@ class WelcomeCardWidget extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
+            spacing: 4,
             children: [
               Text(
                 "Selamat Datang!",
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600),
+                style: AppTheme.textTheme.titleMedium?.copyWith(
+                  color: AppTheme.secondaryTextColor,
+                ),
               ),
-              SizedBox(height: 4),
               Text(
                 currKasir?.nama ?? 'User',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Color(0xFF5755FE),
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins'),
+                style: AppTheme.textTheme.titleLarge?.copyWith(
+                  color: AppTheme.primaryColor,
+                ),
               ),
             ],
           ),
@@ -93,10 +89,9 @@ class StoreCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 182,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        color: Color(0xFF5755FE),
+        color: AppTheme.primaryColor,
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -109,49 +104,44 @@ class StoreCardWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
+                  spacing: 6,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 6),
-                      child: Text(
-                        "Indomaret",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Poppins'),
+                    Text(
+                      "Indomaret",
+                      style: AppTheme.textTheme.titleSmall?.copyWith(
+                        color: Colors.white,
                       ),
                     ),
                     Text(
                       "Jl. Pangeran Hidayatullah",
-                      style:
-                          TextStyle(color: Colors.white, fontFamily: 'Poppins'),
+                      style: AppTheme.textTheme.bodyMedium?.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 6, right: 4),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => StoreSettingsPage(),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          width: 58,
-                          height: 58,
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          child: Icon(
-                            Icons.camera_alt_rounded,
-                            color: Colors.grey,
-                          ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => StoreSettingsPage(),
                         ),
-                      )),
-                )
+                      );
+                    },
+                    child: Container(
+                      width: 58,
+                      height: 58,
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      child: Icon(
+                        Icons.camera_alt_rounded,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             Padding(

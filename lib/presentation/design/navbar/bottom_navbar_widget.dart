@@ -28,17 +28,17 @@ class BottomNavbarWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        color: AppTheme.bottomNavigationBarThemeData.backgroundColor,
         boxShadow: [AppTheme.boxShadow],
       ),
       child: BlocBuilder<NavbarCubit, int>(
         builder: (context, currIndex) => GNav(
           backgroundColor:
-              Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
-          color: Theme.of(context).primaryColor,
-          activeColor: Theme.of(context).primaryColor,
+              AppTheme.bottomNavigationBarThemeData.backgroundColor!,
+          color: AppTheme.primaryColor,
+          activeColor: AppTheme.primaryColor,
           tabBackgroundColor:
-              Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+              AppTheme.bottomNavigationBarThemeData.selectedItemColor!,
           padding: const EdgeInsets.all(10),
           gap: 12,
           selectedIndex: currIndex,
@@ -48,10 +48,10 @@ class BottomNavbarWidget extends StatelessWidget {
                     icon: item.icon,
                     iconSize: 30,
                     text: item.label,
-                    textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.w600,
-                        ),
+                    textStyle: AppTheme.textTheme.bodyMedium?.copyWith(
+                      color: AppTheme.primaryColor,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ))
               .toList(),
         ),
