@@ -107,26 +107,26 @@ class CardProd extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 14),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Rp. 1.900.000',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
-                        ),
-                        Text(
-                          '290(s).',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 10,
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Text(
+                    //       'Rp. 1.900.000',
+                    //       style: TextStyle(
+                    //         fontFamily: 'Poppins',
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 12,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       '290(s).',
+                    //       style: TextStyle(
+                    //         fontFamily: 'Poppins',
+                    //         fontSize: 10,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

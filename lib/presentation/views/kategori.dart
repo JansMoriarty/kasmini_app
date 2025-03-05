@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasmini_app/presentation/pages/home/list_produk_page.dart';
 import 'package:kasmini_app/presentation/pages/main_page.dart';
 import 'package:kasmini_app/presentation/views/product/list_produk_view.dart';
 import 'package:kasmini_app/presentation/views/home_view.dart';
@@ -126,7 +127,7 @@ class _KategoriState extends State<Kategori> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Product()));
+                                      builder: (context) => ListProdukPage()));
                             },
                             child: Container(
                               width: 100,

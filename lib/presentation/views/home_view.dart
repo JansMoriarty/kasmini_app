@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
 import 'package:kasmini_app/presentation/app_theme.dart';
 import 'package:kasmini_app/presentation/bloc/kasir/current_kasir/current_kasir_cubit.dart';
-import 'package:kasmini_app/presentation/pages/home/kasir_page.dart';
+import 'package:kasmini_app/presentation/pages/home/list_kasir_page.dart';
+import 'package:kasmini_app/presentation/pages/home/list_produk_page.dart';
 import 'package:kasmini_app/presentation/views/edit_toko.dart';
 import 'package:kasmini_app/presentation/views/product/list_produk_view.dart';
 import 'package:kasmini_app/presentation/views/history/history.dart';
@@ -51,8 +53,10 @@ class WelcomeCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CurrentKasirCubit, Kasir?>(
-      builder: (context, currKasir) => Row(
+    return BlocBuilder<CurrentKasirCubit, Kasir?>(builder: (context, state) {
+      final Kasir? kasir = state;
+
+      return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
@@ -66,20 +70,21 @@ class WelcomeCardWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                currKasir?.nama ?? 'User',
+                kasir?.nama ?? 'User',
                 style: AppTheme.textTheme.titleLarge?.copyWith(
                   color: AppTheme.primaryColor,
                 ),
               ),
             ],
           ),
-          const CircleAvatar(
+          CircleAvatar(
             radius: 25,
-            backgroundImage: AssetImage('assets/images/avatar.jpg'),
+            backgroundImage: AssetImage(
+                kasir?.foto ?? 'assets/images/avatar_placeholder.png'),
           ),
         ],
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -247,7 +252,7 @@ class ServiceCarouselWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Product(),
+                        builder: (context) => ListProdukPage(),
                       ),
                     );
                   },
@@ -402,7 +407,9 @@ class ServiceCarouselWidget extends StatelessWidget {
 }
 
 class ServiceListWidget extends StatelessWidget {
-  const ServiceListWidget({
+  final CurrentKasirCubit _currentKasirCubit = GetIt.instance.get<CurrentKasirCubit>();
+
+  ServiceListWidget({
     super.key,
   });
 
@@ -494,9 +501,15 @@ class ServiceListWidget extends StatelessWidget {
           height: 14,
         ),
         GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => KasirPage()));
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ListKasirPage(),
+              ),
+            );
+
+            _currentKasirCubit.init();
           },
           child: Container(
             width: double.infinity,

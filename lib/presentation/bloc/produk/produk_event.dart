@@ -7,8 +7,6 @@ abstract class ProdukEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class LoadAllProduk extends ProdukEvent {}
-
 class LoadProdukById extends ProdukEvent {
   final int id;
 
@@ -18,55 +16,51 @@ class LoadProdukById extends ProdukEvent {
   List<Object?> get props => [id];
 }
 
+class LoadAllProduk extends ProdukEvent {
+  const LoadAllProduk();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class AddProduk extends ProdukEvent {
   final String nama;
-  final int satuanId;
-  final int kategoriId;
-  final String qrCode;
-  final int hargaModal;
-  final String? fotoProduk;
+  final String? noHp;
+  final String pin;
+  final String role;
 
   const AddProduk({
     required this.nama,
-    required this.satuanId,
-    required this.kategoriId,
-    required this.qrCode,
-    required this.hargaModal,
-    this.fotoProduk,
+    this.noHp,
+    required this.pin,
+    required this.role,
   });
 
   @override
-  List<Object?> get props => [
-        nama,
-        satuanId,
-        kategoriId,
-        qrCode,
-        hargaModal,
-        fotoProduk,
-      ];
+  List<Object?> get props => [nama, noHp, pin, role];
 }
 
 class UpdateProduk extends ProdukEvent {
   final int id;
-  final String nama;
-  final int satuanId;
-  final int kategoriId;
-  final String qrCode;
-  final int hargaModal;
-  final int keuntungan;
+  final String? nama;
+  final int? satuanId;
+  final int? kategoriId;
+  final String? qrCode;
+  final int? hargaModal;
+  final int? keuntungan;
   final String? fotoProduk;
-  final bool isFavorite;
+  final bool? isFavorite;
 
   const UpdateProduk({
     required this.id,
-    required this.nama,
-    required this.satuanId,
-    required this.kategoriId,
-    required this.qrCode,
-    required this.hargaModal,
-    required this.keuntungan,
-    required this.fotoProduk,
-    required this.isFavorite,
+    this.nama,
+    this.satuanId,
+    this.kategoriId,
+    this.qrCode,
+    this.hargaModal,
+    this.keuntungan,
+    this.fotoProduk,
+    this.isFavorite,
   });
 
   @override

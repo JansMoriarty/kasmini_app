@@ -19,7 +19,7 @@ class ListKasirBloc extends Bloc<ListKasirEvent, ListKasirState> {
           kasirData: kasirData ?? [],
         ));
       } catch (e) {
-        emit(state.copyWith(
+      emit(state.copyWith(
           status: StatusKasir.error,
           errorMessage: e.toString(),
         ));

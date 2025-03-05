@@ -9,10 +9,10 @@ class CurrentKasirCubit extends Cubit<Kasir?> {
 
   CurrentKasirCubit(this._kasirPreferencesService, this._kasirRepo)
       : super(null) {
-    _init();
+    init();
   }
 
-  Future<void> _init() async {
+  Future<void> init() async {
     int? selectedKasirId = _kasirPreferencesService.selectedKasirId;
     final filter =
         selectedKasirId != null ? {'id': selectedKasirId} : {'role': 'owner'};

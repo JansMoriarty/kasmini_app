@@ -6,6 +6,7 @@ class AppTheme {
   static const Color primaryColor = Color(0xff5755fe);
   static const Color secondaryColor = Colors.white;
   static const Color backgroundColor = Colors.white;
+  static const Color grayOutlineColor = Color(0xffd9d9d9);
   static const Color selectedBackgroundColor = Color.fromARGB(10, 0, 0, 0);
   static const Color shadowColor = Color.fromARGB(23, 0, 0, 0);
 
