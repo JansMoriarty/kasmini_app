@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/domain/entities/kasir.dart';
-import 'package:kasmini_app/presentation/views/account/edit_kasir_view.dart';
 
 class CardKasirWidget extends StatelessWidget {
   final Kasir kasir;
@@ -32,7 +31,7 @@ class CardKasirWidget extends StatelessWidget {
           CircleAvatar(
             radius: 30,
             backgroundImage: AssetImage(
-              '../assets/images/avatar1.jpg',
+              kasir.foto ?? 'assets/images/avatar_placeholder.png',
             ), // Ganti dengan path gambar Anda
           ),
           const SizedBox(width: 16),

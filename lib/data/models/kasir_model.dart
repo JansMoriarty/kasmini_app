@@ -4,9 +4,10 @@ class KasirModel extends Kasir {
   KasirModel({
     required super.id,
     required super.nama,
-    required super.noHp,
+    super.noHp,
     required super.pin,
     required super.role,
+    super.foto,
   });
 
   factory KasirModel.fromMap(Map<String, dynamic> map) {
@@ -16,6 +17,7 @@ class KasirModel extends Kasir {
       noHp: map['noHp'] as String?,
       pin: map['pin'] as String,
       role: RoleKasir.values.byName(map['role']),
+      foto: map['foto'] as String?,
     );
   }
 
@@ -26,6 +28,7 @@ class KasirModel extends Kasir {
       'noHp': noHp,
       'pin': pin,
       'role': role.name,
+      'foto': foto,
     };
   }
 
@@ -35,6 +38,7 @@ class KasirModel extends Kasir {
     String? noHp,
     String? pin,
     RoleKasir? role,
+    String? foto,
   }) {
     return KasirModel(
       id: id ?? this.id,
@@ -42,6 +46,7 @@ class KasirModel extends Kasir {
       noHp: noHp ?? this.noHp,
       pin: pin ?? this.pin,
       role: role ?? this.role,
+      foto: foto ?? this.foto,
     );
   }
 }

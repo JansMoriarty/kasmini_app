@@ -21,14 +21,25 @@ class UpdateKasir extends DetailKasirEvent {
   final String? nama;
   final String? noHp;
   final String? pin;
+  final String? foto;
 
   const UpdateKasir({
     required this.id,
     this.nama,
     this.noHp,
-    this.pin
+    this.pin,
+    this.foto,
   });
 
   @override
-  List<Object?> get props => [id, nama, noHp, pin];
+  List<Object?> get props => [id, nama, noHp, pin, foto];
+}
+
+class ImageSelected extends DetailKasirEvent {
+  final String imagePath;
+
+  const ImageSelected(this.imagePath);
+
+  @override
+  List<Object?> get props => [imagePath];
 }

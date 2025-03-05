@@ -91,6 +91,7 @@ class KasirLocalDataSource {
         noHp: kasir.noHp,
         pin: kasir.pin,
         role: kasir.role,
+        foto: kasir.foto,
       );
 
       await database.update(

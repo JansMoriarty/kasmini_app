@@ -11,6 +11,7 @@ class Kasir {
   final String? noHp;
   final String pin;
   final RoleKasir role;
+  final String? foto;
 
   Kasir({
     this.id,
@@ -18,5 +19,6 @@ class Kasir {
     this.noHp,
     required this.pin,
     required this.role,
+    this.foto,
   });
 }

@@ -22,6 +22,14 @@ class EditKasirViewState extends State<EditKasirView> {
   final TextEditingController namaController = TextEditingController();
   final TextEditingController noHpController = TextEditingController();
   final TextEditingController pinController = TextEditingController();
+  String? avatarImagePath;
+
+  List<String> listImagePath = [
+    'assets/images/male_owner.jpg',
+    'assets/images/female_owner.jpg',
+    'assets/images/avatar_male.jpg',
+    'assets/images/avatar_female.jpg',
+  ];
 
   void onSubmit() {
     _detailKasirBloc.add(UpdateKasir(
@@ -29,6 +37,7 @@ class EditKasirViewState extends State<EditKasirView> {
       nama: namaController.text,
       noHp: noHpController.text,
       pin: pinController.text,
+      foto: avatarImagePath,
     ));
   }
 
@@ -40,38 +49,23 @@ class EditKasirViewState extends State<EditKasirView> {
     _detailKasirBloc.add(LoadKasirById(widget.kasirId));
   }
 
-  // Menyimpan gambar avatar yang dipilih
-  String avatarImagePath = '../assets/images/male_owner.jpg';
-
-  // Fungsi untuk menampilkan Modal Bottom Sheet pemilihan gambar
   void _showImagePicker(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white, // Modal background putih
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
-      ),
       builder: (BuildContext context) {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // AppBar-like Container dengan tombol silang di kanan
             Container(
-              color: Color(0xff5755fe),
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+              color: AppTheme.primaryColor,
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     'Pilih Gambar',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                    style: AppTheme.textTheme.titleMedium?.copyWith(
                       color: Colors.white,
-                      fontFamily: 'Poppins',
                     ),
                   ),
                   IconButton(
@@ -83,89 +77,28 @@ class EditKasirViewState extends State<EditKasirView> {
                 ],
               ),
             ),
-            const SizedBox(height: 38),
-            // Gambar-gambar avatar dalam Row
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 18),
+            Container(
+              color: AppTheme.backgroundColor,
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        avatarImagePath =
-                            '../assets/images/avatar_male.jpg'; // Ganti dengan path avatar 1
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        '../assets/images/avatar_male.jpg',
-                        width: 70,
-                        height: 70,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        avatarImagePath =
-                            '../assets/images/avatar_female.jpg'; // Ganti dengan path avatar 2
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        '../assets/images/avatar_female.jpg',
-                        width: 70,
-                        height: 70,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        avatarImagePath =
-                            '../assets/images/male_owner.jpg'; // Ganti dengan path avatar 2
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        '../assets/images/male_owner.jpg',
-                        width: 70,
-                        height: 70,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        avatarImagePath =
-                            '../assets/images/female_owner.jpg'; // Ganti dengan path avatar 2
-                      });
-                      Navigator.pop(context);
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        '../assets/images/female_owner.jpg',
-                        width: 70,
-                        height: 70,
-                      ),
-                    ),
-                  ),
-                ],
+                spacing: 12,
+                children: listImagePath
+                    .map((imagePath) => GestureDetector(
+                          onTap: () {
+                            _detailKasirBloc.add(ImageSelected(imagePath));
+                            Navigator.pop(context);
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.asset(
+                              imagePath,
+                              width: 70,
+                              height: 70,
+                            ),
+                          ),
+                        ))
+                    .toList(),
               ),
             ),
           ],
@@ -257,15 +190,18 @@ class EditKasirViewState extends State<EditKasirView> {
                       namaController.text = kasirData.nama;
                       noHpController.text = kasirData.noHp ?? '';
                       pinController.text = kasirData.pin;
+                      avatarImagePath = state.isImageUpdated
+                          ? state.avatarImagePath
+                          : kasirData.foto;
 
                       return Column(
                         children: [
                           Row(
                             children: [
-                              // Avatar Circle
                               CircleAvatar(
                                 radius: 32,
-                                backgroundImage: AssetImage(avatarImagePath),
+                                backgroundImage: AssetImage(avatarImagePath ??
+                                    'assets/avatar/avatar_placeholder.png'),
                               ),
                               const SizedBox(width: 24),
                               GestureDetector(

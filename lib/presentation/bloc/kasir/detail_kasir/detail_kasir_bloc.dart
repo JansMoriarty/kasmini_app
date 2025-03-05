@@ -54,6 +54,7 @@ class DetailKasirBloc extends Bloc<DetailKasirEvent, DetailKasirState> {
           nama: event.nama,
           noHp: event.noHp,
           pin: event.pin,
+          foto: event.foto,
         );
 
         await _kasirRepo.updateKasir(updatedKasir);
@@ -66,6 +67,13 @@ class DetailKasirBloc extends Bloc<DetailKasirEvent, DetailKasirState> {
           errorMessage: e.toString(),
         ));
       }
+    });
+
+    on<ImageSelected>((event, emit) async {
+      emit(state.copyWith(
+        avatarImagePath: event.imagePath,
+        isImageUpdated: true,
+      ));
     });
   }
 }
