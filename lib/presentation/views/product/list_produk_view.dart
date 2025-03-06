@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kasmini_app/presentation/app_theme.dart';
-import 'package:kasmini_app/presentation/design/ex_prodwidget.dart';
 import 'package:kasmini_app/presentation/design/home/product/card_product_widget.dart';
 import 'package:kasmini_app/presentation/pages/main_page.dart';
 import 'package:kasmini_app/presentation/views/add_prod.dart';
@@ -121,21 +120,20 @@ class ListProdukView extends StatelessWidget {
                         Expanded(
                           child: TextField(
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                
+                              enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12.0),
                                 borderSide: const BorderSide(
                                   color: AppTheme.grayOutlineColor,
                                   width: 1,
                                 ),
                               ),
-                              // focusedBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.circular(12.0),
-                              //   borderSide: const BorderSide(
-                              //     color: Color(0xffd9d9d9),
-                              //     width: 2,
-                              //   ),
-                              // ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12.0),
+                                borderSide: const BorderSide(
+                                  color: AppTheme.grayOutlineColor,
+                                  width: 1,
+                                ),
+                              ),
                               hintText: 'Search',
                               hintStyle: AppTheme.textTheme.bodySmall?.copyWith(
                                 color: AppTheme.secondaryTextColor,
@@ -276,27 +274,24 @@ class ListProdukView extends StatelessWidget {
                   ],
                 ),
               ),
-              // Mengganti Row dengan GridView.builder
               GridView.builder(
-                shrinkWrap: true, // Penting untuk mencegah overflow
-                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Dua kolom horizontal
-                  crossAxisSpacing: 12, // Spasi horizontal antar kartu
-                  mainAxisSpacing: 20, // Spasi vertikal antar kartu
-                  childAspectRatio: 2.2 / 4, // Rasio aspek untuk kartu
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                  childAspectRatio: 3 / 5,
                 ),
-                itemCount: 3, // Jumlah item yang ingin ditampilkan
-                itemBuilder: (context, index) {
-                  return CardProd(); // Widget untuk setiap kartu
-                },
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: (context, index) => CardProductWidget(),
               ),
             ],
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
         height: 90,
         child: Container(
           height: 200,
